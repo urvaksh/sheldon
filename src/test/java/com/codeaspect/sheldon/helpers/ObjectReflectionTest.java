@@ -1,6 +1,6 @@
 package com.codeaspect.sheldon.helpers;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.lang.reflect.Field;
 
@@ -52,6 +52,12 @@ public class ObjectReflectionTest {
 		assertEquals("com.codeaspect.sheldon.helpers.ObjectReflectionTest.TestClass", fld3.getDeclaringClass().getCanonicalName());
 	}
 	
+	@Test(expected=RuntimeException.class)
+	public void testGetFieldByNameOfAbsentField(){
+		ObjectReflection reflection = new ObjectReflection(new TestClass());
+		reflection.getFieldByName("dummy");
+	}
+	
 	@Test
 	public void testGetFieldValue(){
 		ObjectReflection reflection = new ObjectReflection(new TestClass("1","2","3"));
@@ -74,6 +80,14 @@ public class ObjectReflectionTest {
 		reflection.setFieldValue(reflection.getFieldByName("String"),"C");
 		assertEquals("C", obj.string);
 		
+	}
+	
+	@Test
+	public void testEquality(){
+		TestClass del1 = new TestClass("1","2","3");
+		TestClass del2 = new TestClass("1","2","3");
+		assertTrue(new ObjectReflection(del1).equals(new ObjectReflection(del1)));
+		assertFalse(new ObjectReflection(del1).equals(new ObjectReflection(del2)));
 	}
 
 }

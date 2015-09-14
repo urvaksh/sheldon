@@ -105,6 +105,7 @@ public class ObjectReflection {
 				}
 				// Else do nothing, look for the field in the super class
 			}
+			clazz = clazz.getSuperclass();
 		}
 
 		return null;
