@@ -9,7 +9,7 @@ Sheldon is basically a dirty checking framework that deep compares two objects a
 public class MissyCooper {
 
 	private String firstName;
-	
+
     //This field is dirty checked automatically
 	@AuditField(fieldName = "A Sample Field", groups = "standard")
 	private String lastName;
@@ -39,10 +39,10 @@ So while Sheldon solves the mysteries of the Universe, I thought a small Java fr
 
 ##API Overview
 The basic API to use Sheldon is covered by 4 Annotations and a class that performs the dirty checking   
-|Annotation|Description|   
-|----------|-----------|   
-|@Auditable| Annotation must be placed on all classes that the framework is expected to dirty check|
-|@AuditComparator|Is a special annotation that can be used if developers do not wish to provide a comparator for the class|
-|@AuditField|Annotation must be placed on each field that needs to be dirty checked.|
-|@AuditableList|Annotation must be place on evert List that needs to be dirty checked|
-|AuditChecker|The entrypoint for the framework|
+| Annotation/Class | Description                                                                                              |
+|------------------|----------------------------------------------------------------------------------------------------------|
+| @Auditable       | Annotation must be placed on all classes that the framework is expected to dirty check                   |
+| @AuditComparator | Is a special annotation that can be used if developers do not wish to provide a comparator for the class |
+| @AuditField      | Annotation must be placed on each field that needs to be dirty checked.                                  |
+| @AuditableList   | Annotation must be place on every List that needs to be dirty checked                                    |
+| AuditChecker     | The entry-point for the framework                                                                        |
