@@ -12,6 +12,7 @@ import java.util.Set;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 
+import com.codeaspect.sheldon.annonations.AuditField;
 import com.codeaspect.sheldon.annonations.Auditable;
 import com.codeaspect.sheldon.annonations.AuditableList;
 import com.codeaspect.sheldon.exceptions.ConversionException;
@@ -30,7 +31,7 @@ public class FieldMetadataHelper {
 	 * @return the auditable fields
 	 */
 	public static Set<Field> getAuditableFields(Class<?> clazz) {
-		return getFieldsFromStaticCache(clazz, Auditable.class, auditFieldCache);
+		return getFieldsFromStaticCache(clazz, AuditField.class, auditFieldCache);
 	}
 
 	/**

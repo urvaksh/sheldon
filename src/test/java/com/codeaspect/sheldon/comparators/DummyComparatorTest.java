@@ -6,7 +6,7 @@ import com.codeaspect.sheldon.comparators.DummyComparator;
 
 public class DummyComparatorTest {
 	
-	@Test
+	@Test(expected=AssertionError.class)
 	public void testDummyComparator(){
 		new DummyComparator().compare(1L, 2L);
 	}

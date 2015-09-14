@@ -22,6 +22,6 @@ public class StringUtil {
 	}
 
 	public static String listToDelimitedString(List<String> list, String delim) {
-		return arrayToDelimitedString(list.toArray(), ",");
+		return arrayToDelimitedString(list.toArray(), delim);
 	}
 }

@@ -43,4 +43,12 @@ public class AuditChangeEntry {
 	public static AuditChangeEntry modifyEntry(AuditPath path, Object value1, Object value2){
 		return new AuditChangeEntry(Action.MODIFY, path, value1, value2);
 	}
+
+	@Override
+	public String toString() {
+		return "AuditChangeEntry [action=" + action + ", path=" + path
+				+ ", value1=" + value1 + ", value2=" + value2 + "]";
+	}
+	
+	
 }

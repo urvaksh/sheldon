@@ -28,7 +28,7 @@ public class AuditChecker<T> {
 			return Arrays.asList(AuditChangeEntry.modifyEntry(path, obj1, obj2));
 		}
 
-		if (obj1.getClass().isAnnotationPresent(Auditable.class)) {
+		if (!obj1.getClass().isAnnotationPresent(Auditable.class)) {
 			throw new ConversionException("Class must be annotated with @Auditable");
 		}
 
@@ -69,7 +69,7 @@ public class AuditChecker<T> {
 			return Arrays.asList(AuditChangeEntry.deleteEntry(null, obj2));
 		}
 
-		if (obj1.getClass().isAnnotationPresent(Auditable.class)) {
+		if (!obj1.getClass().isAnnotationPresent(Auditable.class)) {
 			throw new ConversionException("Class must be annotated with @Auditable");
 		}
 		

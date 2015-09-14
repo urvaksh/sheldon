@@ -72,7 +72,7 @@ public class AuditListHelper {
 		int lastIndexMatched=0;
 		for(int idx=0;idx<list1.size();idx++){
 			Object item = list1.get(idx);
-			int matchLoaction = getMatch(item, list1, lastIndexMatched);
+			int matchLoaction = getMatch(item, list2, lastIndexMatched);
 			listPositions.put(idx, matchLoaction);
 			if(matchLoaction>0){
 				lastIndexMatched=matchLoaction;
