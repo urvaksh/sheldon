@@ -1,4 +1,4 @@
-package com.codeaspect.sheldon.helpers.intg;
+package com.codeaspect.sheldon.intg;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import com.codeaspect.sheldon.annonations.Auditable;
 import com.codeaspect.sheldon.annonations.AuditableList;
 
 @Ignore
-public class Samples {
+public class Structure {
 
 	@Ignore
 	@Auditable(name = "Parent", comparatorFields = @AuditComparator({ "sample1", "sample2" }))

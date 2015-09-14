@@ -1,4 +1,4 @@
-package com.codeaspect.sheldon.helpers.intg;
+package com.codeaspect.sheldon.intg;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import com.codeaspect.sheldon.AuditChecker;
 import com.codeaspect.sheldon.entity.Action;
 import com.codeaspect.sheldon.entity.AuditChangeEntry;
 
-import static com.codeaspect.sheldon.helpers.intg.Samples.*;
+import static com.codeaspect.sheldon.intg.Structure.*;
 
 public class FieldChangeTest {
 

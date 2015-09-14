@@ -1,4 +1,4 @@
-package com.codeaspect.sheldon.helpers.intg;
+package com.codeaspect.sheldon.intg;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.junit.Test;
 import com.codeaspect.sheldon.AuditChecker;
 import com.codeaspect.sheldon.entity.Action;
 import com.codeaspect.sheldon.entity.AuditChangeEntry;
-import com.codeaspect.sheldon.helpers.intg.Samples.Parent;
-import com.codeaspect.sheldon.helpers.intg.Samples.Sibling;
+import com.codeaspect.sheldon.intg.Structure.Parent;
+import com.codeaspect.sheldon.intg.Structure.Sibling;
 
 public class CompositeTest {
 

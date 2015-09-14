@@ -1,6 +1,6 @@
-package com.codeaspect.sheldon.helpers.intg;
+package com.codeaspect.sheldon.intg;
 
-import static com.codeaspect.sheldon.helpers.intg.Samples.*;
+import static com.codeaspect.sheldon.intg.Structure.*;
 
 import java.util.List;
 
