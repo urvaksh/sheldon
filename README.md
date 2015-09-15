@@ -21,14 +21,15 @@ public class MissyCooper {
 
     	//It works on component objects.
 	//Because Missy keeps tabs on Sheldon and tattles to her mom
-	@AuditField(fieldName = "Sibling", groups = "exceptional")
+	//And SheldonCooper is a singleton class with a one of a kind IQ!
+	@AuditField(fieldName = "Sibling", comparatorFields = @AuditComparator("iq"), groups = "exceptional")
 	private SheldonCooper twin;
 
 	//We don't care about him, so not annotation
 	private Person brother;
 
     	//And on Iterables
-	@AuditableList(groups = "standard", comparatorFields = @AuditComparator("id"))
+	@AuditableList(groups = {"standard","mischievous"}, comparatorFields = @AuditComparator("id"))
 	private List<Child> children = new ArrayList<Child>();
 
 }
@@ -89,4 +90,30 @@ public class MissyCooper {
 @AuditComparator("dnaSeq")
 ```
 
+#### @AuditField   
 
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| fieldName | String | The name of the field as you want it to appear in the Audit Path |
+| comparator | Class<? extends Comparator<?>> | Defines a comparator for the class* |
+| comparatorFields | @AuditComparator  | Defines a the set of fields in the class that should be used to create a dynamic comparator for the class* |
+| groups | String[] | Defines the groups for this field. The framework can allow dirty checking for certain groups, if the group is in this list, it will be reported, otherwise it will be skipped |
+\* You need to define one of the two comparators. 
+```Java
+@AuditField(fieldName = "Sibling", comparatorFields = @AuditComparator("iq"), groups = "exceptional")
+private SheldonCooper twin;
+```
+
+#### @AuditableList    
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| comparator | Class<? extends Comparator<?>> | Defines a comparator for the class* |
+| comparatorFields | @AuditComparator  | Defines a the set of fields in the class that should be used to create a dynamic comparator for the class* |
+| listConverter | Class<? extends ListConverter> | The class that defines a ListConverter - A ListConverter must return a List so if a Map hs to be dirty checked, the Map could be converted into a list (key order must be maintained) and returned |
+| groups | String[] | Defines the groups for this field. The framework can allow dirty checking for certain groups, if the group is in this list, it will be reported, otherwise it will be skipped |
+\* You need to define one of the two comparators. 
+```Java
+@AuditableList(groups = {"standard","mischievous"}, comparatorFields = @AuditComparator("id"))
+private List<Child> children = new ArrayList<Child>();
+```
