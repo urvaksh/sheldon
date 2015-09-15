@@ -9,8 +9,8 @@ import org.junit.Test;
 import com.codeaspect.sheldon.AuditChecker;
 import com.codeaspect.sheldon.entity.Action;
 import com.codeaspect.sheldon.entity.AuditChangeEntry;
-import com.codeaspect.sheldon.intg.Structure.Parent;
-import com.codeaspect.sheldon.intg.Structure.Sibling;
+import com.codeaspect.sheldon.intg.model.Parent;
+import com.codeaspect.sheldon.intg.model.Sibling;
 
 public class CompositeTest {
 

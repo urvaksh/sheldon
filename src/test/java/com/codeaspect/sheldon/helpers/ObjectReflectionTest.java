@@ -62,7 +62,7 @@ public class ObjectReflectionTest {
 	public void testGetFieldValue(){
 		ObjectReflection reflection = new ObjectReflection(new TestClass("1","2","3"));
 		assertEquals("1", reflection.getFieldValue(reflection.getFieldByName("_str")));
-		assertEquals("2", reflection.getFieldValue(reflection.getFieldByName("String")));
+		assertEquals("3", reflection.getFieldValue(reflection.getFieldByName("String")));
 		assertEquals("3", reflection.getFieldValue(reflection.getFieldByName("string")));
 	}
 	

@@ -1,7 +1,5 @@
 package com.codeaspect.sheldon.intg;
 
-import static com.codeaspect.sheldon.intg.Structure.*;
-
 import java.util.List;
 
 import junit.framework.Assert;
@@ -11,6 +9,8 @@ import org.junit.Test;
 import com.codeaspect.sheldon.AuditChecker;
 import com.codeaspect.sheldon.entity.Action;
 import com.codeaspect.sheldon.entity.AuditChangeEntry;
+import com.codeaspect.sheldon.intg.model.Child;
+import com.codeaspect.sheldon.intg.model.Parent;
 
 public class ListChangeTest {
 

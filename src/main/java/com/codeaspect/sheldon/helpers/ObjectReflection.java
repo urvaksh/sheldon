@@ -70,13 +70,16 @@ public class ObjectReflection {
 		} else {
 			String getterMethodName = "get" + StringUtils.capitalize(fld.getName());
 			try {
-				Method getterMethod = fld.getDeclaringClass().getMethod(getterMethodName, fld.getType());
+				Method getterMethod = fld.getDeclaringClass().getMethod(getterMethodName);
+				if(!getterMethod.isAccessible()){
+					getterMethod.setAccessible(true);
+				}
 				return getterMethod.invoke(delegate);
 			} catch (NoSuchMethodException e) {
 				// Do nothing, skip to attempt direct field access
 				LOG.log(Level.WARNING, "No getter for non accessable field. Attempting direct field access");
 			} catch (Exception e) {
-				throw new RuntimeException(makeErrorMessage("Unable to invoke getter on field", fld));
+				throw new RuntimeException(makeErrorMessage("Unable to invoke getter on field", fld), e);
 			}
 
 			// Direct Field access
