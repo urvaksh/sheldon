@@ -6,24 +6,28 @@
 Sheldon is basically a dirty checking framework that deep compares two objects and detects any changes in the entire object graph.
 ```Java
 //Just mark the Entity as Auditable
-@Auditable(name = "Missy Cooper", comparatorFields = @AuditComparator({ "firstName", "lastName" }))
+@Auditable(name = "Missy Cooper", comparatorFields = @AuditComparator({ "dnaSeq" }))
 public class MissyCooper {
 
+	//Used as the identifier of this record, hence added in @AuditComparator
+	private DnaSequence dnaSeq;
+
+    	//This field is dirty checked automatically
+	@AuditField(fieldName = "Last Name", groups = "matrimony")
+	private String lastName;
+	
+	//Unlikely to change hence not Audited
 	private String firstName;
 
-    //This field is dirty checked automatically
-	@AuditField(fieldName = "Last Name", groups = "standard")
-	private String lastName;
-
-    //It works on component objects.
-		//Because Missy keeps tabs on Sheldon and tattles to her mom
+    	//It works on component objects.
+	//Because Missy keeps tabs on Sheldon and tattles to her mom
 	@AuditField(fieldName = "Sibling", groups = "exceptional")
 	private SheldonCooper twin;
 
 	//We don't care about him, so not annotation
 	private Person brother;
 
-    //And on Iterables
+    	//And on Iterables
 	@AuditableList(groups = "standard", comparatorFields = @AuditComparator("id"))
 	private List<Child> children = new ArrayList<Child>();
 
