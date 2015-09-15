@@ -15,7 +15,7 @@ public class MissyCooper {
     	//This field is dirty checked automatically
 	@AuditField(fieldName = "Last Name", groups = "matrimony")
 	private String lastName;
-	
+
 	//Unlikely to change hence not Audited
 	private String firstName;
 
@@ -79,7 +79,7 @@ public class MissyCooper {
 	...
 }
 ```
-\* You need to define one of the two comparators. The framework uses comparators over a any sort of equality so that when there are multiple records in a list, sorting and comparing ordered pairs is far more efficient O(nlogn) than comparing all the reords to each other O(n2). 
+\* You need to define one of the two comparators. The framework uses comparators over a any sort of equality so that when there are multiple records in a list, sorting and comparing ordered pairs is far more efficient O(nlogn) than comparing all the reords to each other O(n<sup>2</sup>).
 
 #### @AuditComparator   
 
@@ -98,7 +98,7 @@ public class MissyCooper {
 | comparator | Class<? extends Comparator<?>> | Defines a comparator for the class* |
 | comparatorFields | @AuditComparator  | Defines a the set of fields in the class that should be used to create a dynamic comparator for the class* |
 | groups | String[] | Defines the groups for this field. The framework can allow dirty checking for certain groups, if the group is in this list, it will be reported, otherwise it will be skipped |
-\* You need to define one of the two comparators. 
+\* You need to define one of the two comparators.
 ```Java
 @AuditField(fieldName = "Sibling", comparatorFields = @AuditComparator("iq"), groups = "exceptional")
 private SheldonCooper twin;
@@ -112,8 +112,25 @@ private SheldonCooper twin;
 | comparatorFields | @AuditComparator  | Defines a the set of fields in the class that should be used to create a dynamic comparator for the class* |
 | listConverter | Class<? extends ListConverter> | The class that defines a ListConverter - A ListConverter must return a List so if a Map hs to be dirty checked, the Map could be converted into a list (key order must be maintained) and returned |
 | groups | String[] | Defines the groups for this field. The framework can allow dirty checking for certain groups, if the group is in this list, it will be reported, otherwise it will be skipped |
-\* You need to define one of the two comparators. 
+\* You need to define one of the two comparators.
 ```Java
 @AuditableList(groups = {"standard","mischievous"}, comparatorFields = @AuditComparator("id"))
 private List<Child> children = new ArrayList<Child>();
 ```
+
+### Comparators and Comparator Precedence
+
+#### Comparator as a better equals
+The Sheldon framework uses Comparators because they not only help in determining equality, but also help the framework optimmize the performance of the dirty checking.   
+The concept is simple, if you have 2 lists and are required to find pairs of items with matching keys with only equals, it would take O(n<sup>2</sup>) while if we were to sort the keys in O(n logn) time, we could perform a sequential search, drastically reducing our complexity for any lists larger than 10 items.   
+\* Actually it would take n<sup>2</sup>/2 comparisons, but that's the O notation for you.
+
+#### DynamicComparator to reduce code and provide a better API
+While the framework expects Comparator classes, writing these classes for every entity or list is a huge pain, so the framework takes a declarative approach and lets the user define the fields that haae to be compared using the @AuditComparator annotation.   The contents of this annotation are read by the framework which then creates a DynamicComparator using those fields.
+
+#### Comparator Precedence
+1. @AuditableList annotation has the property comparatorFields() create a DynamicComparator with those fields.
+2. @AuditableList has a comparator() use that comparator.
+3. @AuditField has comparatorFields() create a DynamicComparator with those fields
+4. @Auditable has a comparator() use that comparator.
+5. Create a new DynamicComparator with all the fields marked with @AuditField
