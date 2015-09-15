@@ -26,9 +26,9 @@ public class MissyCooper {
 ```
 
 #### Why is it called Sheldon?
-For those of you who live in a parallell glaxy where you have not heard of [The Big Bang Theory](http://http://the-big-bang-theory.com/), Sheldon is one of the characters in this popular sit-com. For those of you who know about The Big Bang Theory, you know Sheldon is the best thing that happened to the world!
+For those of you who live in a parallel universe where you have not heard of [The Big Bang Theory](http://http://the-big-bang-theory.com/), Sheldon is one of the characters in this popular sit-com. For those of you who know about The Big Bang Theory, you know Sheldon is the best thing that happened to the world!
 
-Most promiment of Sheldon's many traits is that he does not like any sort of change and complains even about even the littlest things.
+Most prominent of Sheldon's many traits is that he does not like any sort of change and complains even about even the littlest things.
 >Sheldon: Excuse me. This is not about protecting my friend. I’m a big fan of homeostasis. Do you know what that is?   
 >Penny: Of course not.   
 >Sheldon: Homeostasis refers to a system’s ability to regulate its internal environment and maintain a constant condition of properties like temperature or pH.     
@@ -39,6 +39,7 @@ So while Sheldon solves the mysteries of the Universe, I thought a small Java fr
 
 ##API Overview
 The basic API to use Sheldon is covered by 4 Annotations and a class that performs the dirty checking   
+
 | Annotation/Class | Description                                                                                              |
 |------------------|----------------------------------------------------------------------------------------------------------|
 | @Auditable       | Annotation must be placed on all classes that the framework is expected to dirty check                   |
