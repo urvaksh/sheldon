@@ -1,5 +1,6 @@
 # Sheldon
 ### A framework that detects changes and complains about them
+[![Build Status](https://travis-ci.org/urvaksh/sheldon.svg?branch=master)](https://travis-ci.org/urvaksh/sheldon)
 
 #### What is Sheldon?
 Sheldon is basically a dirty checking framework that deep compares two objects and detects any changes in the entire object graph.
