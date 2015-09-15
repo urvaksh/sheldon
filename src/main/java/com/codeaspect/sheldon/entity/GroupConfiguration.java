@@ -6,6 +6,11 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 
+/**
+ * Represents a group and determines the inheritance rules for all the groups.
+ * @author urvaksh.rogers@gmail.com
+ *
+ */
 public class GroupConfiguration {
 
 	private String[] groups;

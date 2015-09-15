@@ -21,6 +21,13 @@ public class AuditChecker<T> {
 
 	
 	@SuppressWarnings("unchecked")
+	/**
+	 * Compares objects starting at a predefined path
+	 * @param obj1 the old object
+	 * @param obj2 the updated object
+	 * @param path the path at which the changes will start to be logged
+	 * @return
+	 */
 	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, AuditPath path) {
 		if (obj1 == null && obj2 == null) {
 			return new ArrayList<AuditChangeEntry>(0);
@@ -62,6 +69,12 @@ public class AuditChecker<T> {
 		return auditChangeEntry;
 	}
 
+	/**
+	 * Compares 2 objects 
+	 * @param obj1 the old object
+	 * @param obj2 the updated object
+	 * @return
+	 */
 	public List<AuditChangeEntry> checkObjects(T obj1, T obj2) {
 		if (obj1 == null && obj2 == null) {
 			return new ArrayList<AuditChangeEntry>(0);
@@ -76,16 +89,37 @@ public class AuditChecker<T> {
 		return checkObjects(obj1, obj2, AuditPath.EMPTY);
 	}
 	
+	/**
+	 * Compares objects and filters them based on the GroupConfiguration
+	 * @param obj1 the old object
+	 * @param obj2 the updated object
+	 * @param path the path at which the changes will start to be logged
+	 * @param gc represents the groups and inheritance rules of groups
+	 * @return
+	 */
 	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, AuditPath path, GroupConfiguration gc){
 		List<AuditChangeEntry> results = checkObjects(obj1, obj2, path);
 		return gc.filter(results);
 	}
 	
+	/**
+	 * Compares objects and filters them based on the GroupConfiguration
+	 * @param obj1 the old object
+	 * @param obj2 the updated object
+	 * @param gc represents the groups and inheritance rules of groups
+	 * @return
+	 */
 	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, GroupConfiguration gc){
 		List<AuditChangeEntry> results = checkObjects(obj1, obj2, AuditPath.EMPTY, gc);
 		return gc.filter(results);
 	}
-	
+	/**
+	 * Compares objects and filters them based on their group names
+	 * @param obj1 the old object
+	 * @param obj2 the updated object
+	 * @param groups names of groups
+	 * @return
+	 */
 	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, String... groups){
 		return checkObjects(obj1, obj2, AuditPath.EMPTY, new GroupConfiguration(true, groups));
 	}
