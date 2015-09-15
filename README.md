@@ -1,6 +1,8 @@
 # Sheldon
 ### A framework that detects changes and complains about them
 
+---
+
 #### What is Sheldon?
 Sheldon is basically a dirty checking framework that deep compares two objects and detects any changes in the entire object graph.
 ```Java
@@ -11,12 +13,16 @@ public class MissyCooper {
 	private String firstName;
 
     //This field is dirty checked automatically
-	@AuditField(fieldName = "A Sample Field", groups = "standard")
+	@AuditField(fieldName = "Last Name", groups = "standard")
 	private String lastName;
 
     //It works on component objects.
-	@AuditField(fieldName = "sibling", groups = "exceptional")
-	private SheldonCooper sibling;
+		//Because Missy keeps tabs on Sheldon and tattles to her mom
+	@AuditField(fieldName = "Sibling", groups = "exceptional")
+	private SheldonCooper twin;
+
+	//We don't care about him, so not annotation
+	private Person brother;
 
     //And on Iterables
 	@AuditableList(groups = "standard", comparatorFields = @AuditComparator("id"))
@@ -24,6 +30,15 @@ public class MissyCooper {
 
 }
 ```
+Now dirty checking is as simple as
+```Java
+AuditChecker checker = new AuditChecker<MissyCooper>();
+//Detects all the changes
+List<AuditChangeEntry> changes = checker.checkObjects(oldMissy, newMissy);
+//If you only want to detect changes in the group "exceptional"
+List<AuditChangeEntry> sheldonyChanges = checker.checkObjects(oldMissy, newMissy, "exceptional");
+```
+---
 
 #### Why is it called Sheldon?
 For those of you who live in a parallel universe where you have not heard of [The Big Bang Theory](http://http://the-big-bang-theory.com/), Sheldon is one of the characters in this popular sit-com. For those of you who know about The Big Bang Theory, you know Sheldon is the best thing that happened to the world!
@@ -36,6 +51,8 @@ Most prominent of Sheldon's many traits is that he does not like any sort of cha
 >Sheldon: My point is I don’t like when things change. So, regardless of your feelings, I would like you to continue dating Leonard. And also, while we’re on the subject, you recently changed your shampoo. I’m not comfortable with the new scent. Please stop this madness and go back to green apple.
 
 So while Sheldon solves the mysteries of the Universe, I thought a small Java framework with traits similar to him is a apt tribute to someone who brings us nerds so much fun!
+
+---
 
 ##API Overview
 The basic API to use Sheldon is covered by 4 Annotations and a class that performs the dirty checking   
