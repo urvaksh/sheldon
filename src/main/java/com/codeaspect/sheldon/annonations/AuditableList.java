@@ -14,11 +14,24 @@ import com.codeaspect.sheldon.converters.ListConverter;
 @Retention(RetentionPolicy.RUNTIME)
 @SuppressWarnings("rawtypes")
 public @interface AuditableList {
-	
 
+
+	/**
+	 * The comparator that is used to compare instances of the class this annotation is placed upon
+	 * 
+	 * @return
+	 */
 	public Class<? extends Comparator> comparator() default DummyComparator.class;
 	
+
+	/**
+	 * Defines a the set of fields in the class that should be used to create a dynamic comparator to compare instances
+	 * of the class this annotation is placed upon
+	 * 
+	 * @return
+	 */
 	public AuditComparator comparatorFields() default @AuditComparator;
+	
 	
 	public Class<? extends ListConverter> listConverter() default DefaultListConverter.class;
 	

@@ -8,5 +8,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.ANNOTATION_TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AuditComparator {
+	/**
+	 * List of field names that constitute the class's identity and need to be a part of the Dynamically created Comparator
+	 * @return
+	 */
 	public String[] value() default {};
 }
