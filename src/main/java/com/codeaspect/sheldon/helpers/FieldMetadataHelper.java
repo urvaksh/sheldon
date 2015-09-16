@@ -9,11 +9,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Predicate;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.Predicate;
 
 import com.codeaspect.sheldon.annonations.AuditField;
-import com.codeaspect.sheldon.annonations.Auditable;
 import com.codeaspect.sheldon.annonations.AuditableList;
 import com.codeaspect.sheldon.exceptions.ConversionException;
 import com.codeaspect.sheldon.fieldcache.FieldCache;
@@ -106,9 +105,9 @@ public class FieldMetadataHelper {
 			currentClass = currentClass.getSuperclass();
 		}
 
-		CollectionUtils.filter(fieldList, new Predicate() {
-			public boolean evaluate(Object obj) {
-				Field fld = (Field) obj;
+		
+		CollectionUtils.filter(fieldList, new Predicate<Field>() {
+			public boolean evaluate(Field fld) {
 				return fld.getAnnotation(annotation) == null ? false : true;
 			}
 		});
