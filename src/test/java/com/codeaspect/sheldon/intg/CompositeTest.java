@@ -2,7 +2,7 @@ package com.codeaspect.sheldon.intg;
 
 import java.util.List;
 
-import junit.framework.Assert;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -25,12 +25,12 @@ public class CompositeTest {
 		
 		List<AuditChangeEntry> entries = new AuditChecker<Parent>().checkObjects(p1, p2);
 
-		Assert.assertEquals(1, entries.size());
+		assertEquals(1, entries.size());
 		AuditChangeEntry entry = entries.get(0);
-		Assert.assertEquals("Chris", entry.getValue1());
-		Assert.assertEquals("Jen", entry.getValue2());
-		Assert.assertEquals("sibling>value", entry.getPath().getPathString(">"));
-		Assert.assertEquals(Action.MODIFY, entry.getAction());
+		assertEquals("Chris", entry.getValue1());
+		assertEquals("Jen", entry.getValue2());
+		assertEquals("sibling>value", entry.getPath().getPathString(">"));
+		assertEquals(Action.MODIFY, entry.getAction());
 	}
 	
 	@Test
@@ -41,12 +41,12 @@ public class CompositeTest {
 		
 		List<AuditChangeEntry> entries = new AuditChecker<Parent>().checkObjects(p1, p2);
 
-		Assert.assertEquals(1, entries.size());
+		assertEquals(1, entries.size());
 		AuditChangeEntry entry = entries.get(0);
-		Assert.assertEquals(null, entry.getValue1());
-		Assert.assertEquals(jen, entry.getValue2());
-		Assert.assertEquals("sibling", entry.getPath().getPathString(">"));
-		Assert.assertEquals(Action.MODIFY, entry.getAction());
+		assertEquals(null, entry.getValue1());
+		assertEquals(jen, entry.getValue2());
+		assertEquals("sibling", entry.getPath().getPathString(">"));
+		assertEquals(Action.MODIFY, entry.getAction());
 	}
 	
 	@Test
@@ -57,11 +57,11 @@ public class CompositeTest {
 		
 		List<AuditChangeEntry> entries = new AuditChecker<Parent>().checkObjects(p1, p2);
 
-		Assert.assertEquals(1, entries.size());
+		assertEquals(1, entries.size());
 		AuditChangeEntry entry = entries.get(0);
-		Assert.assertEquals(chris, entry.getValue1());
-		Assert.assertEquals(null, entry.getValue2());
-		Assert.assertEquals("sibling", entry.getPath().getPathString(">"));
-		Assert.assertEquals(Action.MODIFY, entry.getAction());
+		assertEquals(chris, entry.getValue1());
+		assertEquals(null, entry.getValue2());
+		assertEquals("sibling", entry.getPath().getPathString(">"));
+		assertEquals(Action.MODIFY, entry.getAction());
 	}
 }

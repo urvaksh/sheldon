@@ -1,6 +1,8 @@
 package com.codeaspect.sheldon.entity;
 
-import static junit.framework.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -11,9 +13,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import com.codeaspect.sheldon.entity.AuditPath;
-import com.codeaspect.sheldon.entity.GroupConfiguration;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GroupConfigurationTest {

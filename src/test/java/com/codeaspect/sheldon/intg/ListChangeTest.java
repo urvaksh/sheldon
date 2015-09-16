@@ -1,8 +1,8 @@
 package com.codeaspect.sheldon.intg;
 
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 
-import junit.framework.Assert;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -25,9 +25,9 @@ public class ListChangeTest {
 
 		List<AuditChangeEntry> entries = new AuditChecker<Parent>().checkObjects(p1, p2);
 
-		Assert.assertEquals(1, entries.size());
+		assertEquals(1, entries.size());
 		AuditChangeEntry entry = entries.get(0);
-		Assert.assertEquals(Action.CREATE, entry.getAction());
+		assertEquals(Action.CREATE, entry.getAction());
 	}
 
 	@Test
@@ -37,7 +37,7 @@ public class ListChangeTest {
 
 		List<AuditChangeEntry> entries = new AuditChecker<Parent>().checkObjects(p1, p2, "dummy");
 
-		Assert.assertEquals(0, entries.size());
+		assertEquals(0, entries.size());
 	}
 
 	@Test
@@ -47,9 +47,9 @@ public class ListChangeTest {
 
 		List<AuditChangeEntry> entries = new AuditChecker<Parent>().checkObjects(p1, p2);
 
-		Assert.assertEquals(1, entries.size());
+		assertEquals(1, entries.size());
 		AuditChangeEntry entry = entries.get(0);
-		Assert.assertEquals(Action.DELETE, entry.getAction());
+		assertEquals(Action.DELETE, entry.getAction());
 	}
 
 	@Test
@@ -59,12 +59,12 @@ public class ListChangeTest {
 
 		List<AuditChangeEntry> entries = new AuditChecker<Parent>().checkObjects(p1, p2);
 
-		Assert.assertEquals(1, entries.size());
+		assertEquals(1, entries.size());
 		AuditChangeEntry entry = entries.get(0);
-		Assert.assertEquals("2", entry.getValue1());
-		Assert.assertEquals("3", entry.getValue2());
-		Assert.assertEquals("children.fld2", entry.getPath().getPathString());
-		Assert.assertEquals(Action.MODIFY, entry.getAction());
+		assertEquals("2", entry.getValue1());
+		assertEquals("3", entry.getValue2());
+		assertEquals("children.fld2", entry.getPath().getPathString());
+		assertEquals(Action.MODIFY, entry.getAction());
 	}
 
 	@Test
@@ -76,12 +76,12 @@ public class ListChangeTest {
 
 		List<AuditChangeEntry> entries = new AuditChecker<Parent>().checkObjects(p1, p2);
 
-		Assert.assertEquals(1, entries.size());
+		assertEquals(1, entries.size());
 		AuditChangeEntry entry = entries.get(0);
-		Assert.assertEquals("2", entry.getValue1());
-		Assert.assertEquals("B", entry.getValue2());
-		Assert.assertEquals("children.fld2", entry.getPath().getPathString());
-		Assert.assertEquals(Action.MODIFY, entry.getAction());
+		assertEquals("2", entry.getValue1());
+		assertEquals("B", entry.getValue2());
+		assertEquals("children.fld2", entry.getPath().getPathString());
+		assertEquals(Action.MODIFY, entry.getAction());
 	}
 
 	@Test
@@ -91,7 +91,7 @@ public class ListChangeTest {
 
 		List<AuditChangeEntry> entries = new AuditChecker<Parent>().checkObjects(p1, p2);
 
-		Assert.assertEquals(2, entries.size());
+		assertEquals(2, entries.size());
 	}
 
 	@Test
@@ -99,8 +99,8 @@ public class ListChangeTest {
 		Parent p1 = getSameParent().addChild(new Child(1L, "1", "A"));
 		Parent p2 = getSameParent().addChild(new Child(1L, "2", "B"));
 
-		Assert.assertEquals(2, new AuditChecker<Parent>().checkObjects(p1, p2, "standard").size());
-		Assert.assertEquals(1, new AuditChecker<Parent>().checkObjects(p1, p2, "wacky").size());
+		assertEquals(2, new AuditChecker<Parent>().checkObjects(p1, p2, "standard").size());
+		assertEquals(1, new AuditChecker<Parent>().checkObjects(p1, p2, "wacky").size());
 	}
 
 }

@@ -2,7 +2,7 @@ package com.codeaspect.sheldon.intg;
 
 import java.util.List;
 
-import junit.framework.Assert;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -21,12 +21,12 @@ public class FieldChangeTest {
 		AuditChecker<Parent> checker = new AuditChecker<Parent>();
 		List<AuditChangeEntry> entries = checker.checkObjects(p1, p2);
 		
-		Assert.assertEquals(1, entries.size());
+		assertEquals(1, entries.size());
 		AuditChangeEntry entry = entries.get(0);
-		Assert.assertEquals("A", entry.getValue1());
-		Assert.assertEquals("B", entry.getValue2());
-		Assert.assertEquals("sample1", entry.getPath().getPathString());
-		Assert.assertEquals(Action.MODIFY, entry.getAction());
+		assertEquals("A", entry.getValue1());
+		assertEquals("B", entry.getValue2());
+		assertEquals("sample1", entry.getPath().getPathString());
+		assertEquals(Action.MODIFY, entry.getAction());
 	}
 	
 	
@@ -37,7 +37,7 @@ public class FieldChangeTest {
 		AuditChecker<Parent> checker = new AuditChecker<Parent>();
 		List<AuditChangeEntry> entries = checker.checkObjects(p1, p2);
 		
-		Assert.assertEquals(0, entries.size());
+		assertEquals(0, entries.size());
 	}
 	
 	@Test
@@ -47,12 +47,12 @@ public class FieldChangeTest {
 		AuditChecker<Parent> checker = new AuditChecker<Parent>();
 		List<AuditChangeEntry> entries = checker.checkObjects(p1, p2,"standard");
 		
-		Assert.assertEquals(1, entries.size());
+		assertEquals(1, entries.size());
 		AuditChangeEntry entry = entries.get(0);
-		Assert.assertEquals("A", entry.getValue1());
-		Assert.assertEquals("B", entry.getValue2());
-		Assert.assertEquals("sample1", entry.getPath().getPathString());
-		Assert.assertEquals(Action.MODIFY, entry.getAction());
+		assertEquals("A", entry.getValue1());
+		assertEquals("B", entry.getValue2());
+		assertEquals("sample1", entry.getPath().getPathString());
+		assertEquals(Action.MODIFY, entry.getAction());
 	}
 	
 	@Test
@@ -62,6 +62,6 @@ public class FieldChangeTest {
 		AuditChecker<Parent> checker = new AuditChecker<Parent>();
 		List<AuditChangeEntry> entries = checker.checkObjects(p1, p2,"non-standard");
 		
-		Assert.assertEquals(0, entries.size());
+		assertEquals(0, entries.size());
 	}
 }

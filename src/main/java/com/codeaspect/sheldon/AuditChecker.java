@@ -45,10 +45,10 @@ public class AuditChecker<T> {
 		for (Field fld : FieldMetadataHelper.getAuditableFields(obj1.getClass())) {
 			AuditField auditField = fld.getAnnotation(AuditField.class);
 			
-			@SuppressWarnings("rawtypes")
-			Comparator comparator = ComparatorHelper.getFieldComparator(fld);
+			Comparator<? super Object> comparator = ComparatorHelper.getFieldComparator(fld);
 			
-			Object value1 = reflectionObject1.getFieldValue(fld), value2 = reflectionObject2.getFieldValue(fld);
+			Object value1 = reflectionObject1.getFieldValue(fld);
+			Object value2 = reflectionObject2.getFieldValue(fld);
 
 			AuditPath auditPath = new AuditPath(path, fld.getName(), auditField.fieldName(), auditField.groups());
 			if (fld.getType().getAnnotation(Auditable.class) != null) {
