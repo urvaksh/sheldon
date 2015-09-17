@@ -2,19 +2,20 @@ package com.codeaspect.sheldon.intg.model;
 
 import org.junit.Ignore;
 
+import com.codeaspect.sheldon.annonations.AuditComparator;
 import com.codeaspect.sheldon.annonations.AuditField;
 import com.codeaspect.sheldon.annonations.Auditable;
 
 @Ignore
-@Auditable(name = "Child")
+@Auditable(name = "Child", comparatorFields = @AuditComparator("id"))
 public class Child {
 
 	private Long id;
 
-	@AuditField(fieldName = "fld1", groups = { "standrd" })
+	@AuditField(fieldName = "fld1")
 	private String fld1;
 
-	@AuditField(fieldName = "fld2", groups = { "standrd", "wacky" })
+	@AuditField(fieldName = "fld2", groups = "wacky")
 	private String fld2;
 
 	public Child(Long id, String fld1, String fld2) {
