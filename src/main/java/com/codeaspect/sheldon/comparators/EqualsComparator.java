@@ -3,7 +3,7 @@ package com.codeaspect.sheldon.comparators;
 import java.util.Comparator;
 
 /**
- * The Class EqualsComparator compares 2 objects based on their equals method.<br />
+ * The Class EqualsComparator compares 2 objects based on their equals method.
  * If the methods are not equal, it simply returns 1 since it has no way of knowing which value is larger
  */
 public class EqualsComparator implements Comparator<Object> {

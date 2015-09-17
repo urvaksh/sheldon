@@ -9,15 +9,15 @@ import java.util.Set;
 import com.codeaspect.sheldon.helpers.ObjectReflection;
 
 /**
- * The Class DynamicComparator. This class compares two objects of the same type using introspection.<br />
- * It iterates over every field the set of fields passed and compares the values.<br />
+ * The Class DynamicComparator. This class compares two objects of the same type using introspection.
+ * It iterates over every field the set of fields passed and compares the values.
  * Two objects are only deemed equal if all the field values are equal, in this case the class honors the contract of
- * Comparator and returns 0<br />
+ * Comparator and returns 0
  * . If two fields are not equal, the class checks if they are comparable, if comparable it returns the compared value
  * (-1 or 1), if not it moves to the next field (knowing that the return value will never be 0) to check if it is
- * comparable.<br />
+ * comparable.
  * It can be stated that the call to compare will return -1 or 1 based on the first comparable field when it finds an
- * inequality.<br />
+ * inequality.
  * If no field is comparable, i simply returns 1 to denote an inequality.
  */
 public class DynamicComparator implements Comparator<Object> {

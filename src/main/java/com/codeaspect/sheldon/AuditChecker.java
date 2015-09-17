@@ -123,4 +123,5 @@ public class AuditChecker<T> {
 	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, String... groups){
 		return checkObjects(obj1, obj2, AuditPath.EMPTY, new GroupConfiguration(true, groups));
 	}
+	
 }

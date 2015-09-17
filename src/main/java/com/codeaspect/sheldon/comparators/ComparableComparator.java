@@ -2,6 +2,14 @@ package com.codeaspect.sheldon.comparators;
 
 import java.util.Comparator;
 
+/**
+ * If the classes being compared implement {@link Comparable}, and for the purpose of dirty checking, if the compareTo
+ * method checks all the identity fields, then simply use this Comaprator.
+ * 
+ * @author urvaksh.rogers
+ *
+ * @param <T>
+ */
 public class ComparableComparator<T extends Comparable<T>> implements Comparator<T> {
 
 	public int compare(T o1, T o2) {

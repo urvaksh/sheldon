@@ -15,22 +15,22 @@ public @interface Auditable {
 	/**
 	 * The name of the Object as you want it to appear in the Audit Path
 	 * 
-	 * @return
+	 * @return name of Object
 	 */
 	public String name();
 
 	/**
-	 * The comparator that is used to compare instances of the class this annotation is placed upon
+	 * The {@link Comparator} that is used to compare instances of the class this annotation is placed upon
 	 * 
-	 * @return
+	 * @return a {@link Comparator} 
 	 */
 	public Class<? extends Comparator<?>> comparator() default DummyComparator.class;
 
 	/**
-	 * Defines a the set of fields in the class that should be used to create a dynamic comparator to compare instances
+	 * Defines a the set of fields in the class that should be used to create a dynamic {@link Comparator} to compare instances
 	 * of the class this annotation is placed upon
 	 * 
-	 * @return
+	 * @return the {@link AuditComparator} anotation containing the fields for a dynamic {@link Comparator}
 	 */
 	public AuditComparator comparatorFields() default @AuditComparator;
 
