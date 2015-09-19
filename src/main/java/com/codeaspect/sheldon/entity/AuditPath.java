@@ -62,7 +62,7 @@ public class AuditPath {
 
 	/**
 	 * Gets a String List representing the path (property names).
-	 * @return List<String> representing the path (property names).
+	 * @return List of String representing the path (property names).
 	 */
 	public List<String> getPath() {
 		List<String> fullPath = new ArrayList<String>();
@@ -93,7 +93,7 @@ public class AuditPath {
 
 	/**
 	 * Gets a String List representing the descriptions of the path leading to the object.
-	 * @return List<String> representing the descriptions of the path leading to the object.
+	 * @return List of String representing the descriptions of the path leading to the object.
 	 */
 	public List<String> getDescription() {
 		List<String> fullDescription = new ArrayList<String>();
@@ -109,13 +109,13 @@ public class AuditPath {
 	 * @param separator the separator used to tokenize each part of the path
 	 * @return A string representation of the descriptions
 	 */
-	public String getDescriptionString(String seperator) {
+	public String getDescriptionString(String separator) {
 		List<String> descList = getDescription();
-		return StringUtil.listToDelimitedString(descList, seperator);
+		return StringUtil.listToDelimitedString(descList, separator);
 	}
 
 	/**
-	 * Creates a String representing the the descriptions of the full path leading to the object with the ">" character as the separator.
+	 * Creates a String representing the the descriptions of the full path leading to the object with the "&gt;" character as the separator.
 	 * @return A string representation of the descriptions
 	 */
 	public String getDescriptionString() {
