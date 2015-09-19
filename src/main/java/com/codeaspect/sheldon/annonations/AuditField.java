@@ -18,7 +18,7 @@ import com.codeaspect.sheldon.comparators.EqualsComparator;
 public @interface AuditField {
 
 	/**
-	 * The name of the field as you want it to appear in the Audit Path
+	 * The name of the field as it should appear in the Audit Path
 	 * 
 	 * @return
 	 */
