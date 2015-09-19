@@ -68,10 +68,12 @@ public class FieldMetadataHelper {
 			if (fld != null) {
 				return fld;
 			}
+			
+			baseClazz=baseClazz.getSuperclass();
 		}
 		throw new SheldonException(String.format(
 				"Class %s does not have field named %s",
-				clazz.getCanonicalName(), name));
+				clazz==null?"Object":clazz.getCanonicalName(), name));
 	}
 
 	public static Class<?> getGenericType(Field fld) {

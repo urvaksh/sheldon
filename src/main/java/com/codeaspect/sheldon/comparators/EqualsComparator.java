@@ -1,5 +1,6 @@
 package com.codeaspect.sheldon.comparators;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -13,7 +14,9 @@ import java.util.Comparator;
  * 
  * @author urvaksh.rogers
  */
-public class EqualsComparator implements Comparator<Object> {
+public class EqualsComparator implements Comparator<Object>, Serializable {
+
+	private static final long serialVersionUID = -3306044279762224869L;
 
 	public int compare(Object o1, Object o2) {
 		if (o1 == null && o2 == null) {

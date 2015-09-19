@@ -1,4 +1,6 @@
 apply plugin: 'java'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
 
 compileJava{
 	sourceCompatibility = 1.6
@@ -8,6 +10,10 @@ compileJava{
 compileTestJava{
 	sourceCompatibility = 1.8
 	targetCompatibility = 1.8
+}
+
+findbugs {
+    sourceSets = [sourceSets.main]
 }
 
 repositories {

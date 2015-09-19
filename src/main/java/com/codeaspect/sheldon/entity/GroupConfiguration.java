@@ -30,7 +30,7 @@ public class GroupConfiguration {
 	 * @return
 	 */
 	public String[] getGroups() {
-		return groups;
+		return groups.clone();
 	}
 
 	/**

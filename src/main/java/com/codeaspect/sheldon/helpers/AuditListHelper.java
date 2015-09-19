@@ -66,7 +66,7 @@ public class AuditListHelper {
 		List<?> list1 = getSortedList(o1), list2 = getSortedList(o2);
 		Map<Integer, Integer> listPositions = new HashMap<Integer, Integer>();
 
-		String fieldDescription = (FieldMetadataHelper.getGenericType(field).getAnnotation(Auditable.class)).name();
+		String fieldDescription = FieldMetadataHelper.getGenericType(field).getAnnotation(Auditable.class).name();
 		AuditableList auditableList = field.getAnnotation(AuditableList.class);
 		
 		int lastIndexMatched=0;
@@ -80,8 +80,12 @@ public class AuditListHelper {
 		}
 		
 		Set<Integer> existingElements = new HashSet<Integer>();
-		for(int listIdx : listPositions.keySet()){
-			int otherListIdx = listPositions.get(listIdx);
+		//for(int listIdx : listPositions.keySet()){
+			//int otherListIdx = listPositions.get(listIdx);
+		for(Map.Entry<Integer, Integer> entry : listPositions.entrySet()){
+			int listIdx = entry.getKey();
+			int otherListIdx=entry.getValue();
+			
 			if(otherListIdx==-1){//Deletion
 				AuditPath auditPath = new AuditPath(path, field.getName(), fieldDescription, auditableList.groups());
 				auditChangeList.add(AuditChangeEntry.deleteEntry(auditPath, list1.get(listIdx)));
@@ -89,7 +93,7 @@ public class AuditListHelper {
 				existingElements.add(otherListIdx);
 				Object secondListItem = list2.get(otherListIdx);
 				AuditPath fieldPath = new AuditPath(path, field.getName(), fieldDescription, auditableList.groups());
-				List<AuditChangeEntry> changes = (new AuditChecker<Object>().checkObjects(list1.get(listIdx), secondListItem, fieldPath));
+				List<AuditChangeEntry> changes = new AuditChecker<Object>().checkObjects(list1.get(listIdx), secondListItem, fieldPath);
 				auditChangeList.addAll(changes);
 			}
 		}

@@ -7,10 +7,9 @@ import java.util.Set;
 
 public class StaticMapFieldCache implements FieldCache{
 	
-	private static Map<Class<?>,Set<Field>> fieldCache;
+	private static Map<Class<?>,Set<Field>> fieldCache = new HashMap<Class<?>, Set<Field>>();
 	
     private StaticMapFieldCache() {
-    	fieldCache = new HashMap<Class<?>, Set<Field>>();
     }
  
     private static class LazyHolder {

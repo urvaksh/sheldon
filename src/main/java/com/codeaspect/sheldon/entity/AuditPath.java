@@ -23,7 +23,7 @@ import com.codeaspect.sheldon.helpers.StringUtil;
  */
 public class AuditPath {
 
-	public static AuditPath EMPTY = null;
+	public static final AuditPath EMPTY = null;
 
 	private AuditPath parent;
 
@@ -49,7 +49,7 @@ public class AuditPath {
 		this.parent = parent;
 		this.path = path;
 		this.description = description;
-		this.groups = groups;
+		this.groups = groups.clone();
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class AuditPath {
 	 * @return array of groups
 	 */
 	public String[] getGroups() {
-		return groups;
+		return groups.clone();
 	}
 
 	/**

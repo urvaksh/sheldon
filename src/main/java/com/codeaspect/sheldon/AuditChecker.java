@@ -64,8 +64,8 @@ public class AuditChecker<T> {
 
 			AuditPath auditPath = new AuditPath(path, fld.getName(), auditField.fieldName(), auditField.groups());
 			if (fld.getType().getAnnotation(Auditable.class) != null) {
-				List<AuditChangeEntry> innerEntityChanges = (new AuditChecker<Object>().checkObjects(value1, value2,
-						auditPath));
+				List<AuditChangeEntry> innerEntityChanges = new AuditChecker<Object>()
+						.checkObjects(value1, value2, auditPath);
 				auditChangeEntry.addAll(innerEntityChanges);
 			} else if (comparator.compare(value1, value2) != 0) {
 				auditChangeEntry.add(AuditChangeEntry.modifyEntry(auditPath, value1, value2));

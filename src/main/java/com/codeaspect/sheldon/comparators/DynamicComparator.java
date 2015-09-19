@@ -9,16 +9,17 @@ import java.util.Set;
 import com.codeaspect.sheldon.helpers.ObjectReflection;
 
 /**
- * The Class DynamicComparator. This class compares two objects of the same type using introspection.
- * It iterates over every field the set of fields passed and compares the values.
- * Two objects are only deemed equal if all the field values are equal, in this case the class honors the contract of
- * Comparator and returns 0
- * . If two fields are not equal, the class checks if they are comparable, if comparable it returns the compared value
- * (-1 or 1), if not it moves to the next field (knowing that the return value will never be 0) to check if it is
- * comparable.
- * It can be stated that the call to compare will return -1 or 1 based on the first comparable field when it finds an
+ * The Class DynamicComparator. This class compares two objects of the same type
+ * using introspection. It iterates over every field the set of fields passed
+ * and compares the values. Two objects are only deemed equal if all the field
+ * values are equal, in this case the class honors the contract of Comparator
+ * and returns 0 . If two fields are not equal, the class checks if they are
+ * comparable, if comparable it returns the compared value (-1 or 1), if not it
+ * moves to the next field (knowing that the return value will never be 0) to
+ * check if it is comparable. It can be stated that the call to compare will
+ * return -1 or 1 based on the first comparable field when it finds an
+ * inequality. If no field is comparable, i simply returns 1 to denote an
  * inequality.
- * If no field is comparable, i simply returns 1 to denote an inequality.
  * 
  * @author urvaksh.rogers
  */
@@ -79,8 +80,8 @@ public class DynamicComparator implements Comparator<Object> {
 				}
 			} catch (NoSuchFieldException e) {
 				if (clazz.getSuperclass() == null) {
-					throw new RuntimeException(String.format("%s is not present in %s", fieldName,
-							clazz.getCanonicalName()), e);
+					throw new RuntimeException(
+							String.format("%s is not present in %s", fieldName, clazz.getCanonicalName()), e);
 				}
 				// Else do nothing, look for the field in the super class
 			}
@@ -94,7 +95,7 @@ public class DynamicComparator implements Comparator<Object> {
 	 * 
 	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 	 */
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public int compare(Object o1, Object o2) {
 		ObjectReflection o1Reflect = new ObjectReflection(o1);
@@ -113,19 +114,16 @@ public class DynamicComparator implements Comparator<Object> {
 				failedCompValue = val1 == null ? -1 : 1;
 			} else if (!val1.equals(val2)) {
 				isEqual = false;
-				if (failedCompValue == 0) {
-					if (Comparable.class.isAssignableFrom(fld.getType())) {
-						
-						Comparable cmp = (Comparable) val1;
-						failedCompValue = cmp.compareTo(val2);
-						break;
-					}
+				if (failedCompValue == 0 && Comparable.class.isAssignableFrom(fld.getType())) {
+					Comparable cmp = (Comparable) val1;
+					failedCompValue = cmp.compareTo(val2);
+					break;
 				}
 			}
 
 		}
 
-		return isEqual ? 0 : (failedCompValue != 0 ? failedCompValue : 1);
+		return isEqual ? 0 : failedCompValue != 0 ? failedCompValue : 1;
 	}
 
 }

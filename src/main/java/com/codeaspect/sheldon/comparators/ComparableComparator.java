@@ -1,5 +1,6 @@
 package com.codeaspect.sheldon.comparators;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -10,7 +11,12 @@ import java.util.Comparator;
  *
  * @param <T>
  */
-public class ComparableComparator<T extends Comparable<T>> implements Comparator<T> {
+public class ComparableComparator<T extends Comparable<T>> implements Comparator<T>, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4225442331637558394L;
 
 	public int compare(T o1, T o2) {
 		if (o1 == null && o2 == null) {
