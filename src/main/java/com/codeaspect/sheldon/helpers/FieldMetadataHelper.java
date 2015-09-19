@@ -14,7 +14,7 @@ import org.apache.commons.collections4.Predicate;
 
 import com.codeaspect.sheldon.annonations.AuditField;
 import com.codeaspect.sheldon.annonations.AuditableList;
-import com.codeaspect.sheldon.exceptions.ConversionException;
+import com.codeaspect.sheldon.exceptions.SheldonException;
 import com.codeaspect.sheldon.fieldcache.FieldCache;
 
 /**
@@ -69,7 +69,7 @@ public class FieldMetadataHelper {
 				return fld;
 			}
 		}
-		throw new ConversionException(String.format(
+		throw new SheldonException(String.format(
 				"Class %s does not have field named %s",
 				clazz.getCanonicalName(), name));
 	}

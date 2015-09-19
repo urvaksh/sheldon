@@ -9,7 +9,12 @@ import java.util.Comparator;
 import com.codeaspect.sheldon.comparators.DummyComparator;
 import com.codeaspect.sheldon.converters.DefaultListConverter;
 import com.codeaspect.sheldon.converters.ListConverter;
-
+/**
+ * Indicates that a Collection can be inspected for changes
+ * 
+ * @author urvaksh.rogers
+ *
+ */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @SuppressWarnings("rawtypes")

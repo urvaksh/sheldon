@@ -5,6 +5,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import com.codeaspect.sheldon.comparators.DynamicComparator;
+/**
+ * Defines the field names for a {@link DynamicComparator}
+ * 
+ * @author urvaksh.rogers
+ *
+ */
 @Target(ElementType.ANNOTATION_TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AuditComparator {

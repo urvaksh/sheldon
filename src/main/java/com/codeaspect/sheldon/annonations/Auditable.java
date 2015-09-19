@@ -7,7 +7,12 @@ import java.lang.annotation.Target;
 import java.util.Comparator;
 
 import com.codeaspect.sheldon.comparators.DummyComparator;
-
+/**
+ * Indicates that a class either at a top level or at a nested level can be inspected for changes
+ * 
+ * @author urvaksh.rogers
+ *
+ */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Auditable {

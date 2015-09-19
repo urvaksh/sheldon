@@ -19,6 +19,8 @@ import com.codeaspect.sheldon.helpers.ObjectReflection;
  * It can be stated that the call to compare will return -1 or 1 based on the first comparable field when it finds an
  * inequality.
  * If no field is comparable, i simply returns 1 to denote an inequality.
+ * 
+ * @author urvaksh.rogers
  */
 public class DynamicComparator implements Comparator<Object> {
 

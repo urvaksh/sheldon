@@ -7,7 +7,12 @@ import java.lang.annotation.Target;
 import java.util.Comparator;
 
 import com.codeaspect.sheldon.comparators.EqualsComparator;
-
+/**
+ * Defines that the annotated field should be dirty checked
+ * 
+ * @author urvaksh.rogers
+ *
+ */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AuditField {

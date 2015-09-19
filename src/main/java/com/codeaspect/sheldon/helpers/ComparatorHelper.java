@@ -8,7 +8,7 @@ import com.codeaspect.sheldon.annonations.AuditField;
 import com.codeaspect.sheldon.annonations.Auditable;
 import com.codeaspect.sheldon.annonations.AuditableList;
 import com.codeaspect.sheldon.comparators.DynamicComparator;
-import com.codeaspect.sheldon.exceptions.ConversionException;
+import com.codeaspect.sheldon.exceptions.SheldonException;
 
 public class ComparatorHelper {
 
@@ -24,7 +24,7 @@ public class ComparatorHelper {
 				return fldAnnotation.comparator().newInstance();
 			}
 		} catch (Exception e) {
-			throw new ConversionException("Unable to create comparator", e);
+			throw new SheldonException("Unable to create comparator", e);
 		}
 	}
 
@@ -53,7 +53,7 @@ public class ComparatorHelper {
 				return new DynamicComparator(FieldMetadataHelper.getAuditableFields(genericType));
 			}
 		} catch (Exception e) {
-			throw new ConversionException("Failed to create Comparator", e);
+			throw new SheldonException("Failed to create Comparator", e);
 		}
 
 	}

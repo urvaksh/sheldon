@@ -17,7 +17,7 @@ import com.codeaspect.sheldon.annonations.AuditableList;
 import com.codeaspect.sheldon.converters.ListConverter;
 import com.codeaspect.sheldon.entity.AuditChangeEntry;
 import com.codeaspect.sheldon.entity.AuditPath;
-import com.codeaspect.sheldon.exceptions.ConversionException;
+import com.codeaspect.sheldon.exceptions.SheldonException;
 
 public class AuditListHelper {
 
@@ -45,7 +45,7 @@ public class AuditListHelper {
 
 			return baseList;
 		} catch (Exception e) {
-			throw new ConversionException("Unable to create list", e);
+			throw new SheldonException("Unable to create list", e);
 		}
 	}
 

@@ -1,5 +1,22 @@
 package com.codeaspect.sheldon.entity;
 
+/**
+ * Represents the change in the entity 
+ * 
+ * @author urvaksh.rogers
+ *
+ */
 public enum Action {
-	CREATE,MODIFY,DELETE;
+	/**
+	 * A new Object was created
+	 */
+	CREATE,
+	/**
+	 * The object was modified
+	 */
+	MODIFY,
+	/**
+	 * The Object was deleted
+	 */
+	DELETE;
 }

@@ -11,21 +11,33 @@ import com.codeaspect.sheldon.annonations.Auditable;
 import com.codeaspect.sheldon.entity.AuditChangeEntry;
 import com.codeaspect.sheldon.entity.AuditPath;
 import com.codeaspect.sheldon.entity.GroupConfiguration;
-import com.codeaspect.sheldon.exceptions.ConversionException;
+import com.codeaspect.sheldon.exceptions.SheldonException;
 import com.codeaspect.sheldon.helpers.AuditListHelper;
 import com.codeaspect.sheldon.helpers.ComparatorHelper;
 import com.codeaspect.sheldon.helpers.FieldMetadataHelper;
 import com.codeaspect.sheldon.helpers.ObjectReflection;
 
+/**
+ * Entrypoint to Sheldon which provides multiple overloaded checkObjects methods
+ * that allow comparison of two objects and additional configuration.
+ * 
+ * @author urvaksh.rogers
+ * 
+ * @param <T>
+ *            the type of Element being Audited
+ */
 public class AuditChecker<T> {
 
-	
 	@SuppressWarnings("unchecked")
 	/**
 	 * Compares objects starting at a predefined path
-	 * @param obj1 the old object
-	 * @param obj2 the updated object
-	 * @param path the path at which the changes will start to be logged
+	 * 
+	 * @param obj1
+	 *            the old object
+	 * @param obj2
+	 *            the updated object
+	 * @param path
+	 *            the path at which the changes will start to be logged
 	 * @return
 	 */
 	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, AuditPath path) {
@@ -36,7 +48,7 @@ public class AuditChecker<T> {
 		}
 
 		if (!obj1.getClass().isAnnotationPresent(Auditable.class)) {
-			throw new ConversionException("Class must be annotated with @Auditable");
+			throw new SheldonException("Class must be annotated with @Auditable");
 		}
 
 		List<AuditChangeEntry> auditChangeEntry = new ArrayList<AuditChangeEntry>();
@@ -44,9 +56,9 @@ public class AuditChecker<T> {
 
 		for (Field fld : FieldMetadataHelper.getAuditableFields(obj1.getClass())) {
 			AuditField auditField = fld.getAnnotation(AuditField.class);
-			
+
 			Comparator<? super Object> comparator = ComparatorHelper.getFieldComparator(fld);
-			
+
 			Object value1 = reflectionObject1.getFieldValue(fld);
 			Object value2 = reflectionObject2.getFieldValue(fld);
 
@@ -70,9 +82,12 @@ public class AuditChecker<T> {
 	}
 
 	/**
-	 * Compares 2 objects 
-	 * @param obj1 the old object
-	 * @param obj2 the updated object
+	 * Compares 2 objects
+	 * 
+	 * @param obj1
+	 *            the old object
+	 * @param obj2
+	 *            the updated object
 	 * @return
 	 */
 	public List<AuditChangeEntry> checkObjects(T obj1, T obj2) {
@@ -83,45 +98,59 @@ public class AuditChecker<T> {
 		}
 
 		if (!obj1.getClass().isAnnotationPresent(Auditable.class)) {
-			throw new ConversionException("Class must be annotated with @Auditable");
+			throw new SheldonException("Class must be annotated with @Auditable");
 		}
-		
+
 		return checkObjects(obj1, obj2, AuditPath.EMPTY);
 	}
-	
+
 	/**
 	 * Compares objects and filters them based on the GroupConfiguration
-	 * @param obj1 the old object
-	 * @param obj2 the updated object
-	 * @param path the path at which the changes will start to be logged
-	 * @param gc represents the groups and inheritance rules of groups
+	 * 
+	 * @param obj1
+	 *            the old object
+	 * @param obj2
+	 *            the updated object
+	 * @param path
+	 *            the path at which the changes will start to be logged
+	 * @param gc
+	 *            represents the groups and inheritance rules of groups
 	 * @return
 	 */
-	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, AuditPath path, GroupConfiguration gc){
+	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, AuditPath path, GroupConfiguration gc) {
 		List<AuditChangeEntry> results = checkObjects(obj1, obj2, path);
 		return gc.filter(results);
 	}
-	
+
 	/**
 	 * Compares objects and filters them based on the GroupConfiguration
-	 * @param obj1 the old object
-	 * @param obj2 the updated object
-	 * @param gc represents the groups and inheritance rules of groups
+	 * 
+	 * @param obj1
+	 *            the old object
+	 * @param obj2
+	 *            the updated object
+	 * @param gc
+	 *            represents the groups and inheritance rules of groups
 	 * @return
 	 */
-	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, GroupConfiguration gc){
+	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, GroupConfiguration gc) {
 		List<AuditChangeEntry> results = checkObjects(obj1, obj2, AuditPath.EMPTY, gc);
 		return gc.filter(results);
 	}
+
 	/**
 	 * Compares objects and filters them based on their group names
-	 * @param obj1 the old object
-	 * @param obj2 the updated object
-	 * @param groups names of groups
+	 * 
+	 * @param obj1
+	 *            the old object
+	 * @param obj2
+	 *            the updated object
+	 * @param groups
+	 *            names of groups
 	 * @return
 	 */
-	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, String... groups){
+	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, String... groups) {
 		return checkObjects(obj1, obj2, AuditPath.EMPTY, new GroupConfiguration(true, groups));
 	}
-	
+
 }

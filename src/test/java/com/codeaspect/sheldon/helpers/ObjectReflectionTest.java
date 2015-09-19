@@ -66,21 +66,6 @@ public class ObjectReflectionTest {
 		assertEquals("3", reflection.getFieldValue(reflection.getFieldByName("string")));
 	}
 	
-	@Test
-	public void testSetFieldValue(){
-		TestClass obj = new TestClass();
-		ObjectReflection reflection = new ObjectReflection(obj);
-		
-		reflection.setFieldValue(reflection.getFieldByName("_str"),"A");
-		assertEquals("A", obj._str);
-		
-		reflection.setFieldValue(reflection.getFieldByName("String"),"B");
-		assertEquals("B", obj.String);
-		
-		reflection.setFieldValue(reflection.getFieldByName("String"),"C");
-		assertEquals("C", obj.string);
-		
-	}
 	
 	@Test
 	public void testEquality(){

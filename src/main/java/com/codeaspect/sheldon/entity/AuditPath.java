@@ -9,10 +9,20 @@ import java.util.Set;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.codeaspect.sheldon.annonations.Auditable;
+import com.codeaspect.sheldon.annonations.AuditableList;
 import com.codeaspect.sheldon.helpers.StringUtil;
 
+/**
+ * A representation of the full path leading to an object The path holds the
+ * property names as well as descriptions provided in the {@link Auditable} and
+ * {@link AuditableList} annotations.
+ * 
+ * @author urvaksh.rogers
+ *
+ */
 public class AuditPath {
-	
+
 	public static AuditPath EMPTY = null;
 
 	private AuditPath parent;
@@ -23,6 +33,18 @@ public class AuditPath {
 
 	private String[] groups;
 
+	/**
+	 * Creates a new {@link AuditPath}
+	 * 
+	 * @param parent
+	 *            makes this path as it's parent
+	 * @param path
+	 *            the object path (property name)
+	 * @param description
+	 *            the description of the property as set in the
+	 *            {@link Auditable} and {@link AuditableList} annotations
+	 * @param groups the list of groups this path belongs to
+	 */
 	public AuditPath(AuditPath parent, String path, String description, String[] groups) {
 		this.parent = parent;
 		this.path = path;
@@ -30,10 +52,18 @@ public class AuditPath {
 		this.groups = groups;
 	}
 
+	/**
+	 * Gets the parent path
+	 * @return
+	 */
 	public AuditPath getParent() {
 		return parent;
 	}
 
+	/**
+	 * Gets a String List representing the path (property names).
+	 * @return List<String> representing the path (property names).
+	 */
 	public List<String> getPath() {
 		List<String> fullPath = new ArrayList<String>();
 		if (parent != EMPTY) {
@@ -43,15 +73,28 @@ public class AuditPath {
 		return fullPath;
 	}
 
-	public String getPathString(String seperator) {
+	/**
+	 * Creates a String representing the full path
+	 * @param separator the separator used to tokenize each part of the path
+	 * @return A string representation of the path
+	 */
+	public String getPathString(String separator) {
 		List<String> pathList = getPath();
-		return StringUtil.listToDelimitedString(pathList, seperator);
+		return StringUtil.listToDelimitedString(pathList, separator);
 	}
 
+	/**
+	 * Creates a String representing the full path with the "." character as the separator
+	 * @return A string representation of the path
+	 */
 	public String getPathString() {
 		return getPathString(".");
 	}
 
+	/**
+	 * Gets a String List representing the descriptions of the path leading to the object.
+	 * @return List<String> representing the descriptions of the path leading to the object.
+	 */
 	public List<String> getDescription() {
 		List<String> fullDescription = new ArrayList<String>();
 		if (parent != EMPTY) {
@@ -60,20 +103,37 @@ public class AuditPath {
 		fullDescription.add(description);
 		return fullDescription;
 	}
-
+	
+	/**
+	 * Creates a String representing the the descriptions of the full path leading to the object.
+	 * @param separator the separator used to tokenize each part of the path
+	 * @return A string representation of the descriptions
+	 */
 	public String getDescriptionString(String seperator) {
 		List<String> descList = getDescription();
 		return StringUtil.listToDelimitedString(descList, seperator);
 	}
 
+	/**
+	 * Creates a String representing the the descriptions of the full path leading to the object with the ">" character as the separator.
+	 * @return A string representation of the descriptions
+	 */
 	public String getDescriptionString() {
 		return getDescriptionString(">");
 	}
 
+	/**
+	 * Gets the groups associated with the change
+	 * @return array of groups
+	 */
 	public String[] getGroups() {
 		return groups;
 	}
 
+	/**
+	 * Gets the groups associated with the change and all the parent groups leading to the changed object
+	 * @return array of inherited groups
+	 */
 	public String[] getInheritedGroups() {
 		Set<String> groups = new HashSet<String>();
 		groups.addAll(Arrays.asList(this.groups));

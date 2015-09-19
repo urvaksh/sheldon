@@ -27,36 +27,7 @@ public class ObjectReflection {
 		return builder.toString();
 	}
 
-	public void setFieldValue(Field fld, Object value) {
-		if (fld.isAccessible()) {
-			try {
-				fld.set(delegate, value);
-				return;
-			} catch (Exception e) {
-				throw new RuntimeException(makeErrorMessage("Unable to set value of", fld), e);
-			}
-		} else {
-			String setterMethodName = "set" + StringUtils.capitalize(fld.getName());
-			try {
-				Method setterMethod = fld.getDeclaringClass().getMethod(setterMethodName, fld.getType());
-				setterMethod.invoke(delegate, value);
-			} catch (NoSuchMethodException e) {
-				// Do nothing, skip to attempt direct field access
-				LOG.warn("No Setter for non accessable field {}. Attempting direct field access",fld.getName());
-			} catch (Exception e) {
-				throw new RuntimeException(makeErrorMessage("Unable to invoke setter on field", fld));
-			}
-
-			// Direct Field access
-			try {
-				fld.setAccessible(true);
-				fld.set(delegate, value);
-			} catch (Exception e) {
-				throw new RuntimeException(makeErrorMessage("Unable to directly set value in ", fld), e);
-			}
-		}
-	}
-
+	
 	public Object getFieldValue(Field fld) {
 		if (fld.isAccessible()) {
 			try {
