@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
@@ -15,6 +16,31 @@ compileTestJava{
 findbugs {
     sourceSets = [sourceSets.main]
 }
+
+
+checkstyleMain {
+    ignoreFailures = true
+    reports {
+        include ( '**/*.java')
+        xml {
+           destination "${rootProject.buildDir}/reports/checkstyle/main.xml" 
+        }
+    }
+    configFile = file('./config/checkstyle/checkstyle.xml')
+}
+
+checkstyleTest {
+    ignoreFailures = true
+}
+
+
+task checkstyleHtml << {
+    ant.xslt(in: checkstyleMain.reports.xml.destination,
+             style: file('./config/checkstyle/checkstyle-noframes-sorted.xsl'),
+             out: new File(checkstyleMain.reports.xml.destination.parent, 'main.html'))
+}
+checkstyleMain.finalizedBy checkstyleHtml
+
 
 repositories {
     mavenCentral()
