@@ -25,13 +25,13 @@ public class AuditPath {
 
 	public static final AuditPath EMPTY = null;
 
-	private AuditPath parent;
+	private final AuditPath parent;
 
-	private String path;
+	private final String path;
 
-	private String description;
+	private final String description;
 
-	private String[] groups;
+	private final String[] groups;
 
 	/**
 	 * Creates a new {@link AuditPath}
@@ -156,12 +156,15 @@ public class AuditPath {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj){
 			return true;
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;
+		}
 		AuditPath other = (AuditPath) obj;
 		return new EqualsBuilder().append(path, other.path).append(description, other.description).isEquals();
 	}
