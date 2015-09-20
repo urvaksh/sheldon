@@ -20,23 +20,23 @@ import com.codeaspect.sheldon.helpers.ObjectReflection;
  * return -1 or 1 based on the first comparable field when it finds an
  * inequality. If no field is comparable, i simply returns 1 to denote an
  * inequality.
- * 
+ *
  * @author urvaksh.rogers
  */
 public class DynamicComparator implements Comparator<Object> {
 
 	/** The array of fields to be compared. */
-	private Field[] fields;
+	private final Field[] fields;
 
 	/**
 	 * Instantiates a new dynamic comparator.
-	 * 
+	 *
 	 * @param baseClass
 	 *            the base class
 	 * @param fieldList
 	 *            the list of fields that need to be compared
 	 */
-	public DynamicComparator(Class<?> baseClass, String[] fieldList) {
+	public DynamicComparator(final Class<?> baseClass, final String[] fieldList) {
 		List<Field> fields = new ArrayList<Field>(fieldList.length);
 		for (String fieldName : fieldList) {
 			try {
@@ -51,24 +51,24 @@ public class DynamicComparator implements Comparator<Object> {
 
 	/**
 	 * Instantiates a new dynamic comparator.
-	 * 
+	 *
 	 * @param flds
 	 *            the set of fields to be compared
 	 */
-	public DynamicComparator(Set<Field> flds) {
+	public DynamicComparator(final Set<Field> flds) {
 		this.fields = flds.toArray(new Field[] {});
 	}
 
 	/**
 	 * Gets the declared field.
-	 * 
+	 *
 	 * @param delegateClazz
 	 *            the delegate clazz
 	 * @param fieldName
 	 *            the field name
 	 * @return the declared field
 	 */
-	private Field getDeclaredField(Class<?> delegateClazz, String fieldName) {
+	private Field getDeclaredField(final Class<?> delegateClazz, final String fieldName) {
 
 		Class<?> clazz = delegateClazz;
 
@@ -92,12 +92,13 @@ public class DynamicComparator implements Comparator<Object> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 	 */
 
+	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public int compare(Object o1, Object o2) {
+	public int compare(final Object o1, final Object o2) {
 		ObjectReflection o1Reflect = new ObjectReflection(o1);
 		ObjectReflection o2Reflect = new ObjectReflection(o2);
 		boolean isEqual = true;

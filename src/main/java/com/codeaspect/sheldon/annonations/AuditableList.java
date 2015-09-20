@@ -12,7 +12,7 @@ import com.codeaspect.sheldon.converters.ListConverter;
 
 /**
  * Indicates that a Collection can be inspected for changes
- * 
+ *
  * @author urvaksh.rogers
  *
  */
@@ -24,7 +24,7 @@ public @interface AuditableList {
 	/**
 	 * The comparator that is used to compare instances of the class this
 	 * annotation is placed upon
-	 * 
+	 *
 	 * @return
 	 */
 	public Class<? extends Comparator>comparator() default DummyComparator.class;
@@ -33,7 +33,7 @@ public @interface AuditableList {
 	 * Defines a the set of fields in the class that should be used to create a
 	 * dynamic comparator to compare instances of the class this annotation is
 	 * placed upon
-	 * 
+	 *
 	 * @return
 	 */
 	public AuditComparator comparatorFields() default @AuditComparator ;

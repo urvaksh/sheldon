@@ -8,15 +8,15 @@ import org.slf4j.Logger;
 
 public class ObjectReflection {
 
-	private static Logger LOG = org.slf4j.LoggerFactory.getLogger(ObjectReflection.class);
+	private static final Logger LOG = org.slf4j.LoggerFactory.getLogger(ObjectReflection.class);
 
-	private Object delegate;
+	private final Object delegate;
 
-	public ObjectReflection(Object delegate) {
+	public ObjectReflection(final Object delegate) {
 		this.delegate = delegate;
 	}
 
-	private String makeErrorMessage(String errorMsg, Field field, String... errors) {
+	private String makeErrorMessage(final String errorMsg, final Field field, final String... errors) {
 		StringBuilder builder = new StringBuilder(errorMsg).append(field.getType().getCanonicalName()).append(".")
 				.append(field.getName());
 
@@ -27,7 +27,7 @@ public class ObjectReflection {
 		return builder.toString();
 	}
 
-	public Object getFieldValue(Field fld) {
+	public Object getFieldValue(final Field fld) {
 		if (fld.isAccessible()) {
 			try {
 				return fld.get(delegate);
@@ -59,7 +59,7 @@ public class ObjectReflection {
 		}
 	}
 
-	public Field getFieldByName(String name) {
+	public Field getFieldByName(final String name) {
 		Class<?> clazz = delegate.getClass();
 
 		while (clazz != null) {
@@ -87,19 +87,24 @@ public class ObjectReflection {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(final Object obj) {
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		ObjectReflection other = (ObjectReflection) obj;
 		if (delegate == null) {
-			if (other.delegate != null)
+			if (other.delegate != null) {
 				return false;
-		} else if (!delegate.equals(other.delegate))
+			}
+		} else if (!delegate.equals(other.delegate)) {
 			return false;
+		}
 		return true;
 	}
 }

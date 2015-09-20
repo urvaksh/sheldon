@@ -40,7 +40,7 @@ public class AuditChecker<T> {
 	 *            the path at which the changes will start to be logged
 	 * @return
 	 */
-	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, AuditPath path) {
+	public List<AuditChangeEntry> checkObjects(final T obj1, final T obj2, final AuditPath path) {
 		if (obj1 == null && obj2 == null) {
 			return new ArrayList<AuditChangeEntry>(0);
 		} else if (obj1 == null ^ obj2 == null) {
@@ -91,7 +91,7 @@ public class AuditChecker<T> {
 	 *            the updated object
 	 * @return
 	 */
-	public List<AuditChangeEntry> checkObjects(T obj1, T obj2) {
+	public List<AuditChangeEntry> checkObjects(final T obj1, final T obj2) {
 		if (obj1 == null && obj2 == null) {
 			return new ArrayList<AuditChangeEntry>(0);
 		} else if (obj1 == null ^ obj2 == null) {
@@ -118,7 +118,7 @@ public class AuditChecker<T> {
 	 *            represents the groups and inheritance rules of groups
 	 * @return
 	 */
-	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, AuditPath path, GroupConfiguration gc) {
+	public List<AuditChangeEntry> checkObjects(final T obj1, final T obj2, final AuditPath path, final GroupConfiguration gc) {
 		List<AuditChangeEntry> results = checkObjects(obj1, obj2, path);
 		return gc.filter(results);
 	}
@@ -134,7 +134,7 @@ public class AuditChecker<T> {
 	 *            represents the groups and inheritance rules of groups
 	 * @return
 	 */
-	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, GroupConfiguration gc) {
+	public List<AuditChangeEntry> checkObjects(final T obj1, final T obj2, final GroupConfiguration gc) {
 		List<AuditChangeEntry> results = checkObjects(obj1, obj2, AuditPath.EMPTY, gc);
 		return gc.filter(results);
 	}
@@ -150,7 +150,7 @@ public class AuditChecker<T> {
 	 *            names of groups
 	 * @return
 	 */
-	public List<AuditChangeEntry> checkObjects(T obj1, T obj2, String... groups) {
+	public List<AuditChangeEntry> checkObjects(final T obj1, final T obj2, final String... groups) {
 		return checkObjects(obj1, obj2, AuditPath.EMPTY, new GroupConfiguration(true, groups));
 	}
 

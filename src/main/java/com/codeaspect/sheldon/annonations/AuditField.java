@@ -10,7 +10,7 @@ import com.codeaspect.sheldon.comparators.EqualsComparator;
 
 /**
  * Defines that the annotated field should be dirty checked
- * 
+ *
  * @author urvaksh.rogers
  *
  */
@@ -20,7 +20,7 @@ public @interface AuditField {
 
 	/**
 	 * The name of the field as it should appear in the Audit Path
-	 * 
+	 *
 	 * @return
 	 */
 	public String fieldName();
@@ -28,7 +28,7 @@ public @interface AuditField {
 	/**
 	 * The comparator that is used to compare instances of the class this
 	 * annotation is placed upon
-	 * 
+	 *
 	 * @return
 	 */
 	public Class<? extends Comparator<?>>comparator() default EqualsComparator.class;
@@ -37,7 +37,7 @@ public @interface AuditField {
 	 * Defines a the set of fields in the class that should be used to create a
 	 * dynamic comparator to compare instances of the class this annotation is
 	 * placed upon
-	 * 
+	 *
 	 * @return
 	 */
 	public AuditComparator comparatorFields() default @AuditComparator ;
@@ -46,7 +46,7 @@ public @interface AuditField {
 	 * Defines the groups for this field. The framework can allow dirty checking
 	 * for certain groups, if the group is in this list, it will be reported,
 	 * otherwise it will be skipped.
-	 * 
+	 *
 	 * @return
 	 */
 	public String[]groups() default {};

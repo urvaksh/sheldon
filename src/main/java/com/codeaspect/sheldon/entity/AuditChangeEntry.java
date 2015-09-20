@@ -25,7 +25,7 @@ public final class AuditChangeEntry {
 	 */
 	private final Object value1, value2;
 
-	private AuditChangeEntry(Action action, AuditPath path, Object value1, Object value2) {
+	private AuditChangeEntry(final Action action, final AuditPath path, final Object value1, final Object value2) {
 		this.action = action;
 		this.path = path;
 		this.value1 = value1;
@@ -77,7 +77,7 @@ public final class AuditChangeEntry {
 	 *            the reference to the newly created object
 	 * @return a {@link AuditChangeEntry} representing the create action
 	 */
-	public static AuditChangeEntry createEntry(AuditPath path, Object value) {
+	public static AuditChangeEntry createEntry(final AuditPath path, final Object value) {
 		return new AuditChangeEntry(Action.CREATE, path, value, null);
 	}
 
@@ -90,7 +90,7 @@ public final class AuditChangeEntry {
 	 *            the reference of the deleted object
 	 * @return a {@link AuditChangeEntry} representing the delete action
 	 */
-	public static AuditChangeEntry deleteEntry(AuditPath path, Object value) {
+	public static AuditChangeEntry deleteEntry(final AuditPath path, final Object value) {
 		return new AuditChangeEntry(Action.DELETE, path, null, value);
 	}
 
@@ -105,7 +105,7 @@ public final class AuditChangeEntry {
 	 *            the updated value
 	 * @return a {@link AuditChangeEntry} representing the modify action
 	 */
-	public static AuditChangeEntry modifyEntry(AuditPath path, Object value1, Object value2) {
+	public static AuditChangeEntry modifyEntry(final AuditPath path, final Object value1, final Object value2) {
 		return new AuditChangeEntry(Action.MODIFY, path, value1, value2);
 	}
 

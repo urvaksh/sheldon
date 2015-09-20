@@ -9,7 +9,7 @@ import com.codeaspect.sheldon.comparators.DynamicComparator;
 
 /**
  * Defines the field names for a {@link DynamicComparator}
- * 
+ *
  * @author urvaksh.rogers
  *
  */
@@ -19,7 +19,7 @@ public @interface AuditComparator {
 	/**
 	 * List of field names that constitute the class's identity and need to be a
 	 * part of the Dynamically created Comparator
-	 * 
+	 *
 	 * @return
 	 */
 	public String[]value() default {};

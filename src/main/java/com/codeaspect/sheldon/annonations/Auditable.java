@@ -11,7 +11,7 @@ import com.codeaspect.sheldon.comparators.DummyComparator;
 /**
  * Indicates that a class either at a top level or at a nested level can be
  * inspected for changes
- * 
+ *
  * @author urvaksh.rogers
  *
  */
@@ -21,7 +21,7 @@ public @interface Auditable {
 
 	/**
 	 * The name of the Object as you want it to appear in the Audit Path
-	 * 
+	 *
 	 * @return name of Object
 	 */
 	public String name();
@@ -29,7 +29,7 @@ public @interface Auditable {
 	/**
 	 * The {@link Comparator} that is used to compare instances of the class
 	 * this annotation is placed upon
-	 * 
+	 *
 	 * @return a {@link Comparator}
 	 */
 	public Class<? extends Comparator<?>>comparator() default DummyComparator.class;
@@ -38,7 +38,7 @@ public @interface Auditable {
 	 * Defines a the set of fields in the class that should be used to create a
 	 * dynamic {@link Comparator} to compare instances of the class this
 	 * annotation is placed upon
-	 * 
+	 *
 	 * @return the {@link AuditComparator} anotation containing the fields for a
 	 *         dynamic {@link Comparator}
 	 */

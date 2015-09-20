@@ -19,41 +19,43 @@ import com.codeaspect.sheldon.fieldcache.FieldCache;
 
 /**
  * The Class FieldMetadataHelper helps fetch metadata from a class.
+ *
+ * @author urvaksh.rogers
  */
 public class FieldMetadataHelper {
 
 	/**
 	 * Gets the fields annotated with @Auditable.
-	 * 
+	 *
 	 * @param clazz
 	 *            the class to introspect for @Auditable fields
 	 * @return the auditable fields
 	 */
-	public static Set<Field> getAuditableFields(Class<?> clazz) {
+	public static Set<Field> getAuditableFields(final Class<?> clazz) {
 		return getFieldsFromStaticCache(clazz, AuditField.class, auditFieldCache);
 	}
 
 	/**
 	 * Gets the fields annotated with @AuditableList.
-	 * 
+	 *
 	 * @param clazz
 	 *            the class to introspect for @AuditableList fields
 	 * @return the auditable list fields
 	 */
-	public static Set<Field> getAuditableListFields(Class<?> clazz) {
+	public static Set<Field> getAuditableListFields(final Class<?> clazz) {
 		return getFieldsFromStaticCache(clazz, AuditableList.class, auditListCache);
 	}
 
 	/**
 	 * Gets the declared field.
-	 * 
+	 *
 	 * @param clazz
 	 *            the clazz
 	 * @param name
 	 *            the name
 	 * @return the declared field
 	 */
-	public Field getDeclaredField(Class<?> clazz, String name) {
+	public Field getDeclaredField(final Class<?> clazz, final String name) {
 		Class<?> baseClazz = clazz;
 
 		while (baseClazz != null) {
@@ -74,7 +76,7 @@ public class FieldMetadataHelper {
 				clazz == null ? "Object" : clazz.getCanonicalName(), name));
 	}
 
-	public static Class<?> getGenericType(Field fld) {
+	public static Class<?> getGenericType(final Field fld) {
 		if (fld.getGenericType() instanceof ParameterizedType) {
 			ParameterizedType pType = (ParameterizedType) fld.getGenericType();
 
@@ -88,7 +90,7 @@ public class FieldMetadataHelper {
 
 	/**
 	 * Creates the fields from annotation.
-	 * 
+	 *
 	 * @param clazz
 	 *            the clazz
 	 * @param annotation
@@ -106,7 +108,8 @@ public class FieldMetadataHelper {
 		}
 
 		CollectionUtils.filter(fieldList, new Predicate<Field>() {
-			public boolean evaluate(Field fld) {
+			@Override
+			public boolean evaluate(final Field fld) {
 				return fld.getAnnotation(annotation) == null ? false : true;
 			}
 		});
@@ -116,7 +119,7 @@ public class FieldMetadataHelper {
 
 	/**
 	 * Gets the fields from static cache.
-	 * 
+	 *
 	 * @param clazz
 	 *            the clazz
 	 * @param annotation
@@ -125,8 +128,8 @@ public class FieldMetadataHelper {
 	 *            the cache
 	 * @return the fields from static cache
 	 */
-	private static Set<Field> getFieldsFromStaticCache(Class<?> clazz, Class<? extends Annotation> annotation,
-			FieldCache cache) {
+	private static Set<Field> getFieldsFromStaticCache(final Class<?> clazz, final Class<? extends Annotation> annotation,
+			final FieldCache cache) {
 		if (cache != null && cache.contains(clazz)) {
 			return cache.get(clazz);
 		} else {
@@ -144,11 +147,11 @@ public class FieldMetadataHelper {
 
 	private static FieldCache auditFieldCache = null;
 
-	public static void setAuditFieldCache(FieldCache auditFieldCache) {
+	public static void setAuditFieldCache(final FieldCache auditFieldCache) {
 		FieldMetadataHelper.auditFieldCache = auditFieldCache;
 	}
 
-	public static void setAuditListCache(FieldCache auditListCache) {
+	public static void setAuditListCache(final FieldCache auditListCache) {
 		FieldMetadataHelper.auditListCache = auditListCache;
 	}
 

@@ -1,10 +1,27 @@
 package com.codeaspect.sheldon.helpers;
 
 import java.util.List;
-
+/**
+ * Utility class to help with String manipulation.
+ *
+ * @author urvaksh.rogers
+ *
+ */
 public class StringUtil {
 
-	public static String arrayToDelimitedString(Object[] arr, String delim) {
+	/**
+	 * Utility class private constructor.
+	 */
+	private StringUtil() {
+	}
+
+	/**
+	 * Converts and array to a String separating elements with the provided delimiters.
+	 * @param arr a String array
+	 * @param delim the delimiters to separate array elements
+	 * @return the joined string
+	 */
+	public static String arrayToDelimitedString(final Object[] arr, final String delim) {
 		if (arr == null || arr.length == 0) {
 			return "";
 		}
@@ -21,7 +38,13 @@ public class StringUtil {
 		return sb.toString();
 	}
 
-	public static String listToDelimitedString(List<String> list, String delim) {
+	/**
+	 * Converts and array to a String separating elements with the provided delimiters.
+	 * @param list a List of String
+	 * @param delim the delimiters to separate array elements
+	 * @return the joined string
+	 */
+	public static String listToDelimitedString(final List<String> list, final String delim) {
 		return arrayToDelimitedString(list.toArray(), delim);
 	}
 }

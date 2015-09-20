@@ -13,7 +13,7 @@ import com.codeaspect.sheldon.exceptions.SheldonException;
 public class ComparatorHelper {
 
 	@SuppressWarnings("rawtypes")
-	public static Comparator getFieldComparator(Field fld) {
+	public static Comparator getFieldComparator(final Field fld) {
 		AuditField fldAnnotation = fld.getAnnotation(AuditField.class);
 		Class<?> fieldType = fld.getType();
 
@@ -28,13 +28,13 @@ public class ComparatorHelper {
 		}
 	}
 
-	private static boolean compareComparatorClasses(Class<? extends Annotation> clazz, String annotationField,
-			Class<?> actualClazz) throws NoSuchMethodException, SecurityException {
+	private static boolean compareComparatorClasses(final Class<? extends Annotation> clazz, final String annotationField,
+			final Class<?> actualClazz) throws NoSuchMethodException, SecurityException {
 		return clazz.getMethod(annotationField).getDefaultValue().equals(actualClazz);
 	}
 
 	@SuppressWarnings("rawtypes")
-	public static Comparator getListComparator(Field fld) {
+	public static Comparator getListComparator(final Field fld) {
 		AuditableList listAnnotation = fld.getAnnotation(AuditableList.class);
 		Class<?> genericType = FieldMetadataHelper.getGenericType(fld);
 		Auditable fldAnnotation = genericType.getAnnotation(Auditable.class);

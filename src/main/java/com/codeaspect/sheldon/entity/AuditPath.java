@@ -46,7 +46,7 @@ public class AuditPath {
 	 * @param groups
 	 *            the list of groups this path belongs to
 	 */
-	public AuditPath(AuditPath parent, String path, String description, String[] groups) {
+	public AuditPath(final AuditPath parent, final String path, final String description, final String[] groups) {
 		this.parent = parent;
 		this.path = path;
 		this.description = description;
@@ -83,7 +83,7 @@ public class AuditPath {
 	 *            the separator used to tokenize each part of the path
 	 * @return A string representation of the path
 	 */
-	public String getPathString(String separator) {
+	public String getPathString(final String separator) {
 		List<String> pathList = getPath();
 		return StringUtil.listToDelimitedString(pathList, separator);
 	}
@@ -122,7 +122,7 @@ public class AuditPath {
 	 *            the separator used to tokenize each part of the path
 	 * @return A string representation of the descriptions
 	 */
-	public String getDescriptionString(String separator) {
+	public String getDescriptionString(final String separator) {
 		List<String> descList = getDescription();
 		return StringUtil.listToDelimitedString(descList, separator);
 	}
@@ -173,7 +173,7 @@ public class AuditPath {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}

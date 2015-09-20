@@ -20,15 +20,18 @@ public class StaticMapFieldCache implements FieldCache {
 		return LazyHolder.INSTANCE;
 	}
 
-	public boolean contains(Class<?> clazz) {
+	@Override
+	public boolean contains(final Class<?> clazz) {
 		return fieldCache.containsKey(clazz);
 	}
 
-	public void put(Class<?> clazz, Set<Field> fields) {
+	@Override
+	public void put(final Class<?> clazz, final Set<Field> fields) {
 		fieldCache.put(clazz, fields);
 	}
 
-	public Set<Field> get(Class<?> clazz) {
+	@Override
+	public Set<Field> get(final Class<?> clazz) {
 		return fieldCache.get(clazz);
 	}
 

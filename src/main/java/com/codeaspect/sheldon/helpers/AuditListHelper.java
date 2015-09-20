@@ -21,10 +21,10 @@ import com.codeaspect.sheldon.exceptions.SheldonException;
 
 public class AuditListHelper {
 
-	private Field field;
-	private AuditableList auditableList;
+	private final Field field;
+	private final AuditableList auditableList;
 
-	public AuditListHelper(Field fld) {
+	public AuditListHelper(final Field fld) {
 		this.field = fld;
 		this.auditableList = fld.getAnnotation(AuditableList.class);
 
@@ -32,7 +32,7 @@ public class AuditListHelper {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private List<?> getSortedList(Object delegate) {
+	private List<?> getSortedList(final Object delegate) {
 		try {
 			Collection collection = (Collection) (new ObjectReflection(delegate)).getFieldValue(field);
 			if (collection == null) {
@@ -50,7 +50,7 @@ public class AuditListHelper {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public int getMatch(Object item, List<?> list, int start) {
+	public int getMatch(final Object item, final List<?> list, final int start) {
 		Comparator comparator = ComparatorHelper.getListComparator(field);
 		for (int idx = start; idx < list.size(); idx++) {
 			if (comparator.compare(item, list.get(idx)) == 0) {
@@ -60,7 +60,7 @@ public class AuditListHelper {
 		return -1;
 	}
 
-	public List<AuditChangeEntry> checkList(Object o1, Object o2, AuditPath path) {
+	public List<AuditChangeEntry> checkList(final Object o1, final Object o2, final AuditPath path) {
 		List<AuditChangeEntry> auditChangeList = new ArrayList<AuditChangeEntry>();
 
 		List<?> list1 = getSortedList(o1), list2 = getSortedList(o2);
@@ -91,8 +91,8 @@ public class AuditListHelper {
 				existingElements.add(otherListIdx);
 				Object secondListItem = list2.get(otherListIdx);
 				AuditPath fieldPath = new AuditPath(path, field.getName(), fieldDescription, auditableList.groups());
-				List<AuditChangeEntry> changes = new AuditChecker<Object>().checkObjects(list1.get(listIdx),
-						secondListItem, fieldPath);
+				List<AuditChangeEntry> changes = new AuditChecker<Object>()
+						.checkObjects(list1.get(listIdx),secondListItem, fieldPath);
 				auditChangeList.addAll(changes);
 			}
 		}
