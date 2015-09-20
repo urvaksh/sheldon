@@ -17,7 +17,6 @@ findbugs {
     sourceSets = [sourceSets.main]
 }
 
-
 checkstyleMain {
     ignoreFailures = true
     reports {

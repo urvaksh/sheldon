@@ -6,6 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import com.codeaspect.sheldon.comparators.DynamicComparator;
+
 /**
  * Defines the field names for a {@link DynamicComparator}
  * 
@@ -16,8 +17,10 @@ import com.codeaspect.sheldon.comparators.DynamicComparator;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AuditComparator {
 	/**
-	 * List of field names that constitute the class's identity and need to be a part of the Dynamically created Comparator
+	 * List of field names that constitute the class's identity and need to be a
+	 * part of the Dynamically created Comparator
+	 * 
 	 * @return
 	 */
-	public String[] value() default {};
+	public String[]value() default {};
 }

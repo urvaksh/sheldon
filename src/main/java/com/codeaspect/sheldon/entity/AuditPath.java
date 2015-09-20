@@ -17,7 +17,7 @@ import com.codeaspect.sheldon.helpers.StringUtil;
  * A representation of the full path leading to an object The path holds the
  * property names as well as descriptions provided in the {@link Auditable} and
  * {@link AuditableList} annotations.
- * 
+ *
  * @author urvaksh.rogers
  *
  */
@@ -35,7 +35,7 @@ public class AuditPath {
 
 	/**
 	 * Creates a new {@link AuditPath}
-	 * 
+	 *
 	 * @param parent
 	 *            makes this path as it's parent
 	 * @param path
@@ -43,7 +43,8 @@ public class AuditPath {
 	 * @param description
 	 *            the description of the property as set in the
 	 *            {@link Auditable} and {@link AuditableList} annotations
-	 * @param groups the list of groups this path belongs to
+	 * @param groups
+	 *            the list of groups this path belongs to
 	 */
 	public AuditPath(AuditPath parent, String path, String description, String[] groups) {
 		this.parent = parent;
@@ -54,6 +55,7 @@ public class AuditPath {
 
 	/**
 	 * Gets the parent path
+	 *
 	 * @return
 	 */
 	public AuditPath getParent() {
@@ -62,6 +64,7 @@ public class AuditPath {
 
 	/**
 	 * Gets a String List representing the path (property names).
+	 *
 	 * @return List of String representing the path (property names).
 	 */
 	public List<String> getPath() {
@@ -75,7 +78,9 @@ public class AuditPath {
 
 	/**
 	 * Creates a String representing the full path
-	 * @param separator the separator used to tokenize each part of the path
+	 *
+	 * @param separator
+	 *            the separator used to tokenize each part of the path
 	 * @return A string representation of the path
 	 */
 	public String getPathString(String separator) {
@@ -84,7 +89,9 @@ public class AuditPath {
 	}
 
 	/**
-	 * Creates a String representing the full path with the "." character as the separator
+	 * Creates a String representing the full path with the "." character as the
+	 * separator
+	 *
 	 * @return A string representation of the path
 	 */
 	public String getPathString() {
@@ -92,8 +99,11 @@ public class AuditPath {
 	}
 
 	/**
-	 * Gets a String List representing the descriptions of the path leading to the object.
-	 * @return List of String representing the descriptions of the path leading to the object.
+	 * Gets a String List representing the descriptions of the path leading to
+	 * the object.
+	 *
+	 * @return List of String representing the descriptions of the path leading
+	 *         to the object.
 	 */
 	public List<String> getDescription() {
 		List<String> fullDescription = new ArrayList<String>();
@@ -103,10 +113,13 @@ public class AuditPath {
 		fullDescription.add(description);
 		return fullDescription;
 	}
-	
+
 	/**
-	 * Creates a String representing the the descriptions of the full path leading to the object.
-	 * @param separator the separator used to tokenize each part of the path
+	 * Creates a String representing the the descriptions of the full path
+	 * leading to the object.
+	 *
+	 * @param separator
+	 *            the separator used to tokenize each part of the path
 	 * @return A string representation of the descriptions
 	 */
 	public String getDescriptionString(String separator) {
@@ -115,7 +128,9 @@ public class AuditPath {
 	}
 
 	/**
-	 * Creates a String representing the the descriptions of the full path leading to the object with the "&gt;" character as the separator.
+	 * Creates a String representing the the descriptions of the full path
+	 * leading to the object with the "&gt;" character as the separator.
+	 *
 	 * @return A string representation of the descriptions
 	 */
 	public String getDescriptionString() {
@@ -124,6 +139,7 @@ public class AuditPath {
 
 	/**
 	 * Gets the groups associated with the change
+	 *
 	 * @return array of groups
 	 */
 	public String[] getGroups() {
@@ -131,7 +147,9 @@ public class AuditPath {
 	}
 
 	/**
-	 * Gets the groups associated with the change and all the parent groups leading to the changed object
+	 * Gets the groups associated with the change and all the parent groups
+	 * leading to the changed object
+	 *
 	 * @return array of inherited groups
 	 */
 	public String[] getInheritedGroups() {
@@ -156,13 +174,13 @@ public class AuditPath {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj){
+		if (this == obj) {
 			return true;
 		}
-		if (obj == null){
+		if (obj == null) {
 			return false;
 		}
-		if (getClass() != obj.getClass()){
+		if (getClass() != obj.getClass()) {
 			return false;
 		}
 		AuditPath other = (AuditPath) obj;

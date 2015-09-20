@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 /**
- * If the classes being compared implement {@link Comparable}, and for the purpose of dirty checking, if the compareTo
- * method checks all the identity fields, then simply use this Comaprator.
+ * If the classes being compared implement {@link Comparable}, and for the
+ * purpose of dirty checking, if the compareTo method checks all the identity
+ * fields, then simply use this Comaprator.
  * 
  * @author urvaksh.rogers
  *
  * @param <T>
+ *            the type of objects that may be compared by this comparator
  */
 public class ComparableComparator<T extends Comparable<T>> implements Comparator<T>, Serializable {
 

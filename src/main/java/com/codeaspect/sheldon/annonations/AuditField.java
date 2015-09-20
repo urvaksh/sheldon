@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 import java.util.Comparator;
 
 import com.codeaspect.sheldon.comparators.EqualsComparator;
+
 /**
  * Defines that the annotated field should be dirty checked
  * 
@@ -25,25 +26,28 @@ public @interface AuditField {
 	public String fieldName();
 
 	/**
-	 * The comparator that is used to compare instances of the class this annotation is placed upon
+	 * The comparator that is used to compare instances of the class this
+	 * annotation is placed upon
 	 * 
 	 * @return
 	 */
-	public Class<? extends Comparator<?>> comparator() default EqualsComparator.class;
+	public Class<? extends Comparator<?>>comparator() default EqualsComparator.class;
 
 	/**
-	 * Defines a the set of fields in the class that should be used to create a dynamic comparator to compare instances
-	 * of the class this annotation is placed upon
+	 * Defines a the set of fields in the class that should be used to create a
+	 * dynamic comparator to compare instances of the class this annotation is
+	 * placed upon
 	 * 
 	 * @return
 	 */
-	public AuditComparator comparatorFields() default @AuditComparator;
+	public AuditComparator comparatorFields() default @AuditComparator ;
 
 	/**
-	 * Defines the groups for this field. The framework can allow dirty checking for certain groups, if the group is in
-	 * this list, it will be reported, otherwise it will be skipped.
+	 * Defines the groups for this field. The framework can allow dirty checking
+	 * for certain groups, if the group is in this list, it will be reported,
+	 * otherwise it will be skipped.
 	 * 
 	 * @return
 	 */
-	public String[] groups() default {};
+	public String[]groups() default {};
 }

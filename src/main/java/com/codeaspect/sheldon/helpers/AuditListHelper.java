@@ -68,43 +68,42 @@ public class AuditListHelper {
 
 		String fieldDescription = FieldMetadataHelper.getGenericType(field).getAnnotation(Auditable.class).name();
 		AuditableList auditableList = field.getAnnotation(AuditableList.class);
-		
-		int lastIndexMatched=0;
-		for(int idx=0;idx<list1.size();idx++){
+
+		int lastIndexMatched = 0;
+		for (int idx = 0; idx < list1.size(); idx++) {
 			Object item = list1.get(idx);
 			int matchLoaction = getMatch(item, list2, lastIndexMatched);
 			listPositions.put(idx, matchLoaction);
-			if(matchLoaction>0){
-				lastIndexMatched=matchLoaction;
+			if (matchLoaction > 0) {
+				lastIndexMatched = matchLoaction;
 			}
 		}
-		
+
 		Set<Integer> existingElements = new HashSet<Integer>();
-		//for(int listIdx : listPositions.keySet()){
-			//int otherListIdx = listPositions.get(listIdx);
-		for(Map.Entry<Integer, Integer> entry : listPositions.entrySet()){
+		for (Map.Entry<Integer, Integer> entry : listPositions.entrySet()) {
 			int listIdx = entry.getKey();
-			int otherListIdx=entry.getValue();
-			
-			if(otherListIdx==-1){//Deletion
+			int otherListIdx = entry.getValue();
+
+			if (otherListIdx == -1) {// Deletion
 				AuditPath auditPath = new AuditPath(path, field.getName(), fieldDescription, auditableList.groups());
 				auditChangeList.add(AuditChangeEntry.deleteEntry(auditPath, list1.get(listIdx)));
-			}else{//Modification
+			} else {// Modification
 				existingElements.add(otherListIdx);
 				Object secondListItem = list2.get(otherListIdx);
 				AuditPath fieldPath = new AuditPath(path, field.getName(), fieldDescription, auditableList.groups());
-				List<AuditChangeEntry> changes = new AuditChecker<Object>().checkObjects(list1.get(listIdx), secondListItem, fieldPath);
+				List<AuditChangeEntry> changes = new AuditChecker<Object>().checkObjects(list1.get(listIdx),
+						secondListItem, fieldPath);
 				auditChangeList.addAll(changes);
 			}
 		}
-		
-		for(int secondIdx=0; secondIdx<list2.size(); secondIdx++){
-			if(!existingElements.contains(secondIdx)){
+
+		for (int secondIdx = 0; secondIdx < list2.size(); secondIdx++) {
+			if (!existingElements.contains(secondIdx)) {
 				AuditPath fieldPath = new AuditPath(path, field.getName(), fieldDescription, auditableList.groups());
 				auditChangeList.add(AuditChangeEntry.createEntry(fieldPath, list2.get(secondIdx)));
 			}
 		}
-		
+
 		return auditChangeList;
 
 	}

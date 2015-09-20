@@ -20,9 +20,9 @@ import com.codeaspect.sheldon.helpers.ObjectReflection;
 /**
  * Entrypoint to Sheldon which provides multiple overloaded checkObjects methods
  * that allow comparison of two objects and additional configuration.
- * 
+ *
  * @author urvaksh.rogers
- * 
+ *
  * @param <T>
  *            the type of Element being Audited
  */
@@ -31,7 +31,7 @@ public class AuditChecker<T> {
 	@SuppressWarnings("unchecked")
 	/**
 	 * Compares objects starting at a predefined path
-	 * 
+	 *
 	 * @param obj1
 	 *            the old object
 	 * @param obj2
@@ -52,7 +52,8 @@ public class AuditChecker<T> {
 		}
 
 		List<AuditChangeEntry> auditChangeEntry = new ArrayList<AuditChangeEntry>();
-		ObjectReflection reflectionObject1 = new ObjectReflection(obj1), reflectionObject2 = new ObjectReflection(obj2);
+		ObjectReflection reflectionObject1 = new ObjectReflection(obj1);
+		ObjectReflection reflectionObject2 = new ObjectReflection(obj2);
 
 		for (Field fld : FieldMetadataHelper.getAuditableFields(obj1.getClass())) {
 			AuditField auditField = fld.getAnnotation(AuditField.class);
@@ -65,7 +66,7 @@ public class AuditChecker<T> {
 			AuditPath auditPath = new AuditPath(path, fld.getName(), auditField.fieldName(), auditField.groups());
 			if (fld.getType().getAnnotation(Auditable.class) != null) {
 				List<AuditChangeEntry> innerEntityChanges = new AuditChecker<Object>()
-						.checkObjects(value1, value2, auditPath);
+						.checkObjects(value1, value2,auditPath);
 				auditChangeEntry.addAll(innerEntityChanges);
 			} else if (comparator.compare(value1, value2) != 0) {
 				auditChangeEntry.add(AuditChangeEntry.modifyEntry(auditPath, value1, value2));
@@ -83,7 +84,7 @@ public class AuditChecker<T> {
 
 	/**
 	 * Compares 2 objects
-	 * 
+	 *
 	 * @param obj1
 	 *            the old object
 	 * @param obj2
@@ -106,7 +107,7 @@ public class AuditChecker<T> {
 
 	/**
 	 * Compares objects and filters them based on the GroupConfiguration
-	 * 
+	 *
 	 * @param obj1
 	 *            the old object
 	 * @param obj2
@@ -124,7 +125,7 @@ public class AuditChecker<T> {
 
 	/**
 	 * Compares objects and filters them based on the GroupConfiguration
-	 * 
+	 *
 	 * @param obj1
 	 *            the old object
 	 * @param obj2
@@ -140,7 +141,7 @@ public class AuditChecker<T> {
 
 	/**
 	 * Compares objects and filters them based on their group names
-	 * 
+	 *
 	 * @param obj1
 	 *            the old object
 	 * @param obj2

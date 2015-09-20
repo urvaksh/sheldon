@@ -1,9 +1,10 @@
 package com.codeaspect.sheldon.entity;
 
 /**
- * Represents the change on an {@link com.codeaspect.sheldon.annonations.AuditField} and encompasses the
+ * Represents the change on an
+ * {@link com.codeaspect.sheldon.annonations.AuditField} and encompasses the
  * {@link Action}, path, present and previous values.
- * 
+ *
  * @author urvaksh.rogers
  *
  */
@@ -12,17 +13,17 @@ public final class AuditChangeEntry {
 	/**
 	 * The {@link Action} that was performed on the object.
 	 */
-	private Action action;
+	private final Action action;
 
 	/**
 	 * The full {@link AuditPath} leading to the object.
 	 */
-	private AuditPath path;
+	private final AuditPath path;
 
 	/**
 	 * The old and new values
 	 */
-	private Object value1, value2;
+	private final Object value1, value2;
 
 	private AuditChangeEntry(Action action, AuditPath path, Object value1, Object value2) {
 		this.action = action;
@@ -33,6 +34,7 @@ public final class AuditChangeEntry {
 
 	/**
 	 * Get the {@link Action} performed.
+	 *
 	 * @return the {@link Action} describing the change
 	 */
 	public Action getAction() {
@@ -41,6 +43,7 @@ public final class AuditChangeEntry {
 
 	/**
 	 * Get the full {@link AuditPath} leading to the object.
+	 *
 	 * @return the full {@link AuditPath} leading to the object
 	 */
 	public AuditPath getPath() {
@@ -49,6 +52,7 @@ public final class AuditChangeEntry {
 
 	/**
 	 * Gets the original value (if present).
+	 *
 	 * @return the original value
 	 */
 	public Object getValue1() {
@@ -57,6 +61,7 @@ public final class AuditChangeEntry {
 
 	/**
 	 * Gets the updated value (if present).
+	 *
 	 * @return the updated value
 	 */
 	public Object getValue2() {
@@ -65,8 +70,11 @@ public final class AuditChangeEntry {
 
 	/**
 	 * Create a new Entry for when a Create Action is detected.
-	 * @param path the path to the newly created object
-	 * @param value the reference to the newly created object
+	 *
+	 * @param path
+	 *            the path to the newly created object
+	 * @param value
+	 *            the reference to the newly created object
 	 * @return a {@link AuditChangeEntry} representing the create action
 	 */
 	public static AuditChangeEntry createEntry(AuditPath path, Object value) {
@@ -75,8 +83,11 @@ public final class AuditChangeEntry {
 
 	/**
 	 * Create a new Entry for when a Delete Action is detected.
-	 * @param path the path of the deleted object
-	 * @param value the reference of the deleted object
+	 *
+	 * @param path
+	 *            the path of the deleted object
+	 * @param value
+	 *            the reference of the deleted object
 	 * @return a {@link AuditChangeEntry} representing the delete action
 	 */
 	public static AuditChangeEntry deleteEntry(AuditPath path, Object value) {
@@ -85,9 +96,13 @@ public final class AuditChangeEntry {
 
 	/**
 	 * Create a new Entry for when a Modify Action is detected.
-	 * @param path the path of the modified object
-	 * @param value1 the original value
-	 * @param value2 the updated value
+	 *
+	 * @param path
+	 *            the path of the modified object
+	 * @param value1
+	 *            the original value
+	 * @param value2
+	 *            the updated value
 	 * @return a {@link AuditChangeEntry} representing the modify action
 	 */
 	public static AuditChangeEntry modifyEntry(AuditPath path, Object value1, Object value2) {
@@ -96,8 +111,8 @@ public final class AuditChangeEntry {
 
 	@Override
 	public String toString() {
-		return "AuditChangeEntry [action=" + action + ", path=" + path + ", value1=" + value1 + ", value2=" + value2
-				+ "]";
+		return "AuditChangeEntry [action=" + action + ", path=" + path + ", value1=" + value1 +
+				", value2=" + value2 + "]";
 	}
 
 }

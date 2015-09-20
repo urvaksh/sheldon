@@ -41,8 +41,7 @@ public class FieldMetadataHelper {
 	 * @return the auditable list fields
 	 */
 	public static Set<Field> getAuditableListFields(Class<?> clazz) {
-		return getFieldsFromStaticCache(clazz, AuditableList.class,
-				auditListCache);
+		return getFieldsFromStaticCache(clazz, AuditableList.class, auditListCache);
 	}
 
 	/**
@@ -68,12 +67,11 @@ public class FieldMetadataHelper {
 			if (fld != null) {
 				return fld;
 			}
-			
-			baseClazz=baseClazz.getSuperclass();
+
+			baseClazz = baseClazz.getSuperclass();
 		}
-		throw new SheldonException(String.format(
-				"Class %s does not have field named %s",
-				clazz==null?"Object":clazz.getCanonicalName(), name));
+		throw new SheldonException(String.format("Class %s does not have field named %s",
+				clazz == null ? "Object" : clazz.getCanonicalName(), name));
 	}
 
 	public static Class<?> getGenericType(Field fld) {
@@ -107,7 +105,6 @@ public class FieldMetadataHelper {
 			currentClass = currentClass.getSuperclass();
 		}
 
-		
 		CollectionUtils.filter(fieldList, new Predicate<Field>() {
 			public boolean evaluate(Field fld) {
 				return fld.getAnnotation(annotation) == null ? false : true;
@@ -128,8 +125,8 @@ public class FieldMetadataHelper {
 	 *            the cache
 	 * @return the fields from static cache
 	 */
-	private static Set<Field> getFieldsFromStaticCache(Class<?> clazz,
-			Class<? extends Annotation> annotation, FieldCache cache) {
+	private static Set<Field> getFieldsFromStaticCache(Class<?> clazz, Class<? extends Annotation> annotation,
+			FieldCache cache) {
 		if (cache != null && cache.contains(clazz)) {
 			return cache.get(clazz);
 		} else {

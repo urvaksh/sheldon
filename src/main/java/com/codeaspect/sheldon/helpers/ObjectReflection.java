@@ -27,7 +27,6 @@ public class ObjectReflection {
 		return builder.toString();
 	}
 
-	
 	public Object getFieldValue(Field fld) {
 		if (fld.isAccessible()) {
 			try {
@@ -39,7 +38,7 @@ public class ObjectReflection {
 			String getterMethodName = "get" + StringUtils.capitalize(fld.getName());
 			try {
 				Method getterMethod = fld.getDeclaringClass().getMethod(getterMethodName);
-				if(!getterMethod.isAccessible()){
+				if (!getterMethod.isAccessible()) {
 					getterMethod.setAccessible(true);
 				}
 				return getterMethod.invoke(delegate);
@@ -71,8 +70,8 @@ public class ObjectReflection {
 				}
 			} catch (NoSuchFieldException e) {
 				if (clazz.getSuperclass() == null) {
-					throw new RuntimeException(
-							String.format("%s is not present in %s", name, clazz.getCanonicalName()), e);
+					throw new RuntimeException(String.format("%s is not present in %s", name, clazz.getCanonicalName()),
+							e);
 				}
 				// Else do nothing, look for the field in the super class
 			}

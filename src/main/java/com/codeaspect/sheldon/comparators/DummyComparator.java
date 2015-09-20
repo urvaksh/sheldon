@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 import com.codeaspect.sheldon.annonations.Auditable;
+
 /**
- * Placeholder for an actual {@link Comparator} in the {@link Auditable} annotation
+ * Placeholder for an actual {@link Comparator} in the {@link Auditable}
+ * annotation
  * 
  * @author urvaksh.rogers
  *

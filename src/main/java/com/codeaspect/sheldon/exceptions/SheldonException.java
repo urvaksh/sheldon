@@ -2,6 +2,7 @@ package com.codeaspect.sheldon.exceptions;
 
 /**
  * Exception thrown to denote failure of the framework.
+ *
  * @author urvaksh.rogers
  *
  */
@@ -12,15 +13,15 @@ public class SheldonException extends RuntimeException {
 	public SheldonException() {
 	}
 
-	public SheldonException(String msg) {
+	public SheldonException(final String msg) {
 		super(msg);
 	}
 
-	public SheldonException(Exception e) {
+	public SheldonException(final Exception e) {
 		super(e);
 	}
 
-	public SheldonException(String msg, Exception e) {
+	public SheldonException(final String msg, final Exception e) {
 		super(msg, e);
 	}
 }
